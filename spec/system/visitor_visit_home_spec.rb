@@ -6,5 +6,10 @@ describe 'visitor visit home' do
 
         expect(page).to have_content('Freelancers')
         expect(page).to have_content('Boas vindas ao sistema de contratação de freelancers')
+        expect(page).to have_link('Início')
+        expect(page).to have_link('Sou contratante')
+        expect(page).to have_link('Sou freelancer')
+        expect(page).to have_link('Encontre projetos')
+        expect(page).to have_link('Encontre profissionais')
     end
 end
