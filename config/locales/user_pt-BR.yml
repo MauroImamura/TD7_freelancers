@@ -1,0 +1,8 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user: 'Contratante'
+    attributes:
+      user:
+        password: 'Senha'
