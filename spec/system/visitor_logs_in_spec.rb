@@ -17,5 +17,29 @@ describe 'visitor logs in' do
             expect(page).not_to have_content('Sou usuário')
             expect(page).not_to have_content('Sou freelancer')
         end
+
+        it 'and logs out' do
+            user = User.create!(email: 'usuario@freelancers.com.br', password: '123456')
+
+            visit root_path
+            click_on 'Sou contratante'
+            fill_in 'Email', with: user.email
+            fill_in 'Senha', with: user.password
+            click_on 'Entrar'
+            click_on 'Sair'
+
+            expect(page).to have_link('Sou contratante')
+            expect(page).to have_link('Sou freelancer')
+            expect(page).not_to have_content(user.email)
+            expect(page).not_to have_content('Sair')
+        end
+
+        it 'goes to login page but return to home' do
+            visit root_path
+            click_on 'Sou contratante'
+            click_on 'Início'
+
+            expect(current_path).to eq root_path
+        end
     end
 end
