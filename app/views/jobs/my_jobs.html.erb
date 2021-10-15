@@ -1,0 +1,10 @@
+<% if @jobs.empty? %>
+    <p>Você ainda não possui projetos cadastrados.</p>
+    <p><%= link_to 'Cadastre um projeto', new_job_path %></p>
+<% else %>
+    <% @jobs.each do |job| %>
+        <p><%= link_to job.title %></p>
+        <p>Pagamento por hora: <%= number_to_currency(job.payment) %></p>
+        <p><%= l job.deadline, format: :simple %></p>
+    <% end %>
+<% end %>
