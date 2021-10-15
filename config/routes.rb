@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :jobs, only: [:show, :new, :create] do
     get 'my_jobs', on: :collection
   end
+  get 'my_profile', to: 'workers#my_profile'
 end

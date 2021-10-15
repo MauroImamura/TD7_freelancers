@@ -16,7 +16,7 @@
         <span><%= current_user.email %></span>
         <span><%= link_to 'Sair', destroy_user_session_path, method: :delete %></span>
       <% elsif worker_signed_in? %>
-        <span><%= current_worker.email %></span>
+        <span><%= link_to current_worker.email, my_profile_path %></span>
         <span><%= link_to 'Sair', destroy_worker_session_path, method: :delete %></span>
       <% else %>
         <span><%= link_to 'Início', root_path %></span>
