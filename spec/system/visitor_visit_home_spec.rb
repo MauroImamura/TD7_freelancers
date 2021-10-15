@@ -9,7 +9,5 @@ describe 'visitor visit home' do
         expect(page).to have_link('Início')
         expect(page).to have_link('Sou contratante')
         expect(page).to have_link('Sou freelancer')
-        expect(page).to have_link('Encontre projetos')
-        expect(page).to have_link('Encontre profissionais')
     end
 end

@@ -1,0 +1,14 @@
+<h1>Seu novo projeto:</h1>
+<p>Título: <%= @job.title %></p>
+<p>Descrição: <%= @job.description %></p>
+<p>Habilidades exigidas: <%= @job.skills %></p>
+<p>Pagamento por hora: <%= number_to_currency(@job.payment) %></p>
+<p>Data limite para proposta: <%= l @job.deadline, format: :simple %></p>
+<% if @job.in_person? %>
+    <p>Trabalho presencial</p>
+<% else %>
+    <p>Trabalho remoto</p>
+<% end %>
+<p><%%></p>
+<p><%%></p>
+<p><%%></p>
