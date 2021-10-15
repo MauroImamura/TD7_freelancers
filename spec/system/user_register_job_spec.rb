@@ -22,4 +22,19 @@ describe 'User register job' do
         expect(page).to have_content('remoto')
         expect(page).to have_content('Projeto cadastrado com sucesso!')
     end
+
+    it 'and do not succed on empty spaces' do
+        user = User.create!(email: 'usuario@freelancers.com.br', password: '123456')
+
+        login_as user, scope: :user
+        visit root_path
+        click_on 'Cadastre um projeto'
+        click_on 'Enviar'
+
+        expect(page).to have_content('Título não pode ficar em branco')
+        expect(page).to have_content('Descrição não pode ficar em branco')
+        expect(page).to have_content('Habilidades não pode ficar em branco')
+        expect(page).to have_content('Pagamento por hora não pode ficar em branco')
+        expect(page).to have_content('Data limite não pode ficar em branco')
+    end
 end

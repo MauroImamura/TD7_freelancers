@@ -1,3 +1,15 @@
+<div><h1>Cadastre um novo projeto:</h1></div>
+
+<div>
+    <% if @job.errors.any? %>
+        <ul>
+            <% @job.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
+
 <div>
     <%= form_with(model: @job) do |f| %>
         <div>

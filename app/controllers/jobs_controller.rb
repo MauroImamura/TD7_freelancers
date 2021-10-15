@@ -15,6 +15,8 @@ class JobsController < ApplicationController
         @job.user = current_user
         if @job.save
             redirect_to @job
+        else
+            render :new
         end
     end
 end

@@ -1,0 +1,13 @@
+---
+  pt-BR:
+    activerecord:
+      model:
+        job: 'Projeto'
+      attributes:
+        job:
+          title: 'Título'
+          description: 'Descrição'
+          skills: 'Habilidades'
+          deadline: 'Data limite'
+          payment: 'Pagamento por hora'
+            
