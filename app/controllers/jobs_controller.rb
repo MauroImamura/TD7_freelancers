@@ -23,4 +23,8 @@ class JobsController < ApplicationController
     def my_jobs
         @jobs = current_user.jobs
     end
+
+    def jobs_list
+        @jobs = Job.all
+    end
 end

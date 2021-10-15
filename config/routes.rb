@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     get 'my_jobs', on: :collection
   end
   get 'my_profile', to: 'workers#my_profile'
+  get 'job_list', to: 'jobs#jobs_list'
 end

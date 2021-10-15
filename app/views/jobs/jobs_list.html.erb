@@ -1,0 +1,8 @@
+<div><h1>Projetos disponíveis para propostas</h1></div>
+<div>
+    <% if @jobs.any? %>
+        <%= render 'jobs/jobs', jobs: @jobs %>
+    <% else %>
+        <p>Não há projetos disponíveis no momento.</p>
+    <% end %>
+</div>
