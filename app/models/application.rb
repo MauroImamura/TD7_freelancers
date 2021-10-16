@@ -2,7 +2,7 @@ class Application < ApplicationRecord
   belongs_to :job
   belongs_to :worker
   validates :description, :payment, :time_per_week, :expected_deadline, presence: true
-  validates :description, length: {maximum: 120}
+  validates :description, length: {maximum: 100}
   validates :payment, numericality: {greater_than: 0}
   validate :expected_deadline_is_feasible
 
