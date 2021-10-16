@@ -17,4 +17,16 @@ class ApplicationsController < ApplicationController
             render "jobs/show"
         end
     end
+
+    def accept
+        @application = Application.find(params[:id])
+        @application.Aceita!
+        redirect_to @application.job
+    end
+
+    def refuse
+        @application = Application.find(params[:id])
+        @application.Recusada!
+        redirect_to @application.job
+    end
 end

@@ -56,7 +56,12 @@
                 <dt>Valor da hora trabalhada: <%= number_to_currency(applies.payment) %></dt><dd></dd>
                 <dt>Dedicação semanal: <%= applies.time_per_week %> horas</dt><dd></dd>
                 <dt>Prazo de entrega estimado: <%= l applies.expected_deadline, format: :simple %></dt><dd></dd>
+                <dt>Situação: <%= applies.status %></dt>
             </dl>
+            <% if applies.Pendente? %>
+                <%= link_to 'Aceitar proposta', accept_application_path(applies.id), method: :post %>
+                <%= link_to 'Recusar proposta', refuse_application_path(applies.id), method: :post %>
+            <% end %>
         <% end %>
     </div>
 <% end %>
