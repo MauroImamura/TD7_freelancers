@@ -1,0 +1,11 @@
+---
+pt-BR:
+  activerecord:
+    model:
+      application: 'Proposta'
+    attributes:
+      application:
+        description: 'Conte sua experiência sobre o assunto'
+        payment: 'Valor por hora de trabalho'
+        time_per_week: 'Horas de trabalho semanais'
+        expected_deadline: 'Previsão de entrega'

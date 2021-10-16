@@ -1,14 +1,46 @@
-<h1>Seu novo projeto:</h1>
-<p>Título: <%= @job.title %></p>
-<p>Descrição: <%= @job.description %></p>
-<p>Habilidades exigidas: <%= @job.skills %></p>
-<p>Pagamento por hora: <%= number_to_currency(@job.payment) %></p>
-<p>Data limite para proposta: <%= l @job.deadline, format: :simple %></p>
-<% if @job.in_person? %>
-    <p>Trabalho presencial</p>
-<% else %>
-    <p>Trabalho remoto</p>
-<% end %>
-<p><%%></p>
-<p><%%></p>
-<p><%%></p>
+<div><h1>Projeto aguardando profissionais:</h1></div>
+<div>
+    <p>Título: <%= @job.title %></p>
+    <p>Descrição: <%= @job.description %></p>
+    <p>Habilidades exigidas: <%= @job.skills %></p>
+    <p>Pagamento por hora: <%= number_to_currency(@job.payment) %></p>
+    <p>Data limite para proposta: <%= l @job.deadline, format: :simple %></p>
+    <% if @job.in_person? %>
+        <p>Trabalho presencial</p>
+    <% else %>
+        <p>Trabalho remoto</p>
+    <% end %>
+</div>
+<div>
+    <% if @application.errors.any? %>
+        <ul>
+            <% @application.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
+<div>
+    <h2>Envie sua proposta</h2>
+    <%= form_with model: @application, url: job_applications_path(@job) do |f| %>
+        <div>
+            <p><%= f.label :description, 'Conte sua experiência sobre o assunto' %></p>
+            <%= f.text_field :description %>
+        </div>
+        <div>
+            <p><%= f.label :time_per_week, 'Horas de trabalho semanais' %></p>
+            <%= f.text_field :time_per_week %>
+        </div>
+        <div>
+            <p><%= f.label :payment, 'Valor por hora de trabalho' %></p>
+            <%= f.text_field :payment %>
+        </div>
+        <div>
+            <p><%= f.label :expected_deadline, 'Previsão de entrega' %></p>
+            <%= f.date_field :expected_deadline %>
+        </div>
+        <div>
+            <%= f.submit 'Enviar' %>
+        </div>
+    <% end %>
+</div>

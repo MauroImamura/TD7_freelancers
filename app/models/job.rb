@@ -1,5 +1,6 @@
 class Job < ApplicationRecord
   belongs_to :user
+  has_many :applications
   validates :title, :description, :skills, :payment, :deadline, presence: true
   validates :title, uniqueness: true, length: {maximum: 50}
   validates :description, length: {maximum: 120}

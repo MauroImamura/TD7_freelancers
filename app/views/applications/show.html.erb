@@ -1,0 +1,7 @@
+<div><h1>Sua proposta:</h1></div>
+<div>
+    <p>Conte sua experiência sobre o assunto: <%= @application.description %></p>
+    <p>Valor por hora de trabalho: <%= number_to_currency(@application.payment) %></p>
+    <p>Horas de trabalho semanais: <%= @application.time_per_week %> horas</p>
+    <p>Previsão de entrega: <%= l @application.expected_deadline, format: :simple %></p>
+</div>

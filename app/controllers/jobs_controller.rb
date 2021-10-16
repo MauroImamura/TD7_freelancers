@@ -3,6 +3,7 @@ class JobsController < ApplicationController
 
     def show
         @job = Job.find(params[:id])
+        @application = Application.new
         flash[:notice] = 'Projeto cadastrado com sucesso!'
     end
 
