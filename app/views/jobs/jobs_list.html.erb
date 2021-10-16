@@ -1,7 +1,13 @@
 <div><h1>Projetos disponíveis para propostas</h1></div>
 <div>
     <% if @jobs.any? %>
-        <%= render 'jobs/jobs', jobs: @jobs %>
+        <% @jobs.each do |job| %>
+            <% if job.Contratando? %>
+                <p><%= link_to job.title, job_path(job) %></p>
+                <p>Pagamento por hora: <%= number_to_currency(job.payment) %></p>
+                <p><%= l job.deadline, format: :simple %></p>
+            <% end %>
+        <% end %>
     <% else %>
         <p>Não há projetos disponíveis no momento.</p>
     <% end %>

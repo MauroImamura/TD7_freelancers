@@ -28,4 +28,16 @@ class JobsController < ApplicationController
     def jobs_list
         @jobs = Job.all
     end
+
+    def finish_hiring
+        @job = Job.find(params[:id])
+        @job.Executando!
+        redirect_to @job
+    end
+
+    def finish_project
+        @job = Job.find(params[:id])
+        @job.Finalizado!
+        redirect_to @job
+    end
 end

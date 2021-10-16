@@ -10,6 +10,7 @@
     <% else %>
         <p>Trabalho remoto</p>
     <% end %>
+    <p>Situação: <%= @job.status %></p>
 </div>
 <% if worker_signed_in? %>
     <div>
@@ -62,6 +63,11 @@
                 <%= link_to 'Aceitar proposta', accept_application_path(applies.id), method: :post %>
                 <%= link_to 'Recusar proposta', refuse_application_path(applies.id), method: :post %>
             <% end %>
+        <% end %>
+        <% if @job.Contratando? %>
+            <%= link_to 'Encerrar contratações', finish_hiring_job_path(@job.id), method: :post %>
+        <% elsif @job.Executando? %>
+            <%= link_to 'Finalizar projeto', finish_project_job_path(@job.id), method: :post %>
         <% end %>
     </div>
 <% end %>

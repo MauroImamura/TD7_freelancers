@@ -1,5 +1,0 @@
-<% jobs.each do |job| %>
-    <p><%= link_to job.title, job_path(job) %></p>
-    <p>Pagamento por hora: <%= number_to_currency(job.payment) %></p>
-    <p><%= l job.deadline, format: :simple %></p>
-<% end %>
