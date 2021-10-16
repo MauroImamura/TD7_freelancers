@@ -11,36 +11,52 @@
         <p>Trabalho remoto</p>
     <% end %>
 </div>
-<div>
-    <% if @application.errors.any? %>
-        <ul>
-            <% @application.errors.full_messages.each do |error| %>
-                <li><%= error %></li>
-            <% end %>
-        </ul>
-    <% end %>
-</div>
-<div>
-    <h2>Envie sua proposta</h2>
-    <%= form_with model: @application, url: job_applications_path(@job) do |f| %>
-        <div>
-            <p><%= f.label :description, 'Conte sua experiência sobre o assunto' %></p>
-            <%= f.text_field :description %>
-        </div>
-        <div>
-            <p><%= f.label :time_per_week, 'Horas de trabalho semanais' %></p>
-            <%= f.text_field :time_per_week %>
-        </div>
-        <div>
-            <p><%= f.label :payment, 'Valor por hora de trabalho' %></p>
-            <%= f.text_field :payment %>
-        </div>
-        <div>
-            <p><%= f.label :expected_deadline, 'Previsão de entrega' %></p>
-            <%= f.date_field :expected_deadline %>
-        </div>
-        <div>
-            <%= f.submit 'Enviar' %>
-        </div>
-    <% end %>
-</div>
+<% if worker_signed_in? %>
+    <div>
+        <% if @application.errors.any? %>
+            <ul>
+                <% @application.errors.full_messages.each do |error| %>
+                    <li><%= error %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+    <div>
+        <h2>Envie sua proposta</h2>
+        <%= form_with model: @application, url: job_applications_path(@job) do |f| %>
+            <div>
+                <p><%= f.label :description, 'Conte sua experiência sobre o assunto' %></p>
+                <%= f.text_field :description %>
+            </div>
+            <div>
+                <p><%= f.label :time_per_week, 'Horas de trabalho semanais' %></p>
+                <%= f.text_field :time_per_week %>
+            </div>
+            <div>
+                <p><%= f.label :payment, 'Valor por hora de trabalho' %></p>
+                <%= f.text_field :payment %>
+            </div>
+            <div>
+                <p><%= f.label :expected_deadline, 'Previsão de entrega' %></p>
+                <%= f.date_field :expected_deadline %>
+            </div>
+            <div>
+                <%= f.submit 'Enviar' %>
+            </div>
+        <% end %>
+    </div>
+<% end %>
+
+<% if user_signed_in? && @job.user == current_user %>
+    <div>
+        <% @job.applications.each do |applies| %>
+            <p>Proposta de: <%= applies.worker.full_name %></p>
+            <dl>
+                <dt>Experiências: <%= applies.description %></dt><dd></dd>
+                <dt>Valor da hora trabalhada: <%= number_to_currency(applies.payment) %></dt><dd></dd>
+                <dt>Dedicação semanal: <%= applies.time_per_week %> horas</dt><dd></dd>
+                <dt>Prazo de entrega estimado: <%= l applies.expected_deadline, format: :simple %></dt><dd></dd>
+            </dl>
+        <% end %>
+    </div>
+<% end %>

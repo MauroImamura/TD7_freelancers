@@ -9,3 +9,4 @@ pt-BR:
         payment: 'Valor por hora de trabalho'
         time_per_week: 'Horas de trabalho semanais'
         expected_deadline: 'Previsão de entrega'
+        worker: 'Freelancer'
