@@ -157,7 +157,7 @@ describe Job do
                 job = Job.new(title: 'site de locação e imóveis',
                                     description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                     skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                    payment: 25, deadline: 1.days.ago, user: user)
+                                    payment: 25, deadline: 2.days.ago, user: user)
                 job.valid?
                 expect(job.errors.full_messages_for(:deadline)).to include('Data limite inválida, escolha uma data a partir de hoje.')
             end

@@ -25,6 +25,10 @@ class JobsController < ApplicationController
         @jobs = current_user.jobs
     end
 
+    def accepted_jobs
+        @applications = current_worker.applications
+    end
+
     def jobs_list
         @jobs = Job.all
     end

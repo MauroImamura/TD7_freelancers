@@ -9,5 +9,6 @@
         <p><%= link_to 'Cadastre um projeto', new_job_path  %></p>
         <p><%= link_to 'Veja seus projetos', my_jobs_jobs_path  %></p>
     <% elsif worker_signed_in? %>
+        <p><%= link_to 'Projetos que participo', accepted_jobs_jobs_path %></p>
     <% end %>
 </div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :jobs, only: [:show, :new, :create] do
     get 'my_jobs', on: :collection
+    get 'accepted_jobs', on: :collection
     post 'finish_hiring', on: :member
     post 'finish_project', on: :member
     resources :applications, only: [:show, :create], shallow: true do

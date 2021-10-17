@@ -83,7 +83,7 @@ describe Application do
                 expect(application.errors.full_messages_for(:expected_deadline)).to include('Previsão de entrega inválida, escolha uma data a partir de hoje.')
             end
             it 'date is before the current date' do
-                application = Application.new(expected_deadline: 1.days.ago)
+                application = Application.new(expected_deadline: 2.days.ago)
                 application.valid?
                 expect(application.errors.full_messages_for(:expected_deadline)).to include('Previsão de entrega inválida, escolha uma data a partir de hoje.')
             end

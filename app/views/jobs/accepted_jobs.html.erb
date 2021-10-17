@@ -1,0 +1,11 @@
+<h1>Sua lista de propostas aceitas</h1>
+<% if @applications.empty? %>
+    <p>Você ainda não possui projetos em sua lista.</p>
+<% else %>
+    <% @applications.each do |applies| %>
+        <% if applies.Aceita? %>
+            <p><%= link_to applies.job.title, job_path(applies.job) %></p>
+        <% end %>
+    <% end %>
+<% end %>
+<p><%= link_to 'Encontre projetos', job_list_path %></p>
