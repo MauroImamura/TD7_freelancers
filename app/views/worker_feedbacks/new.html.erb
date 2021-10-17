@@ -1,0 +1,14 @@
+<h1>Dê seu feedback sobre <%= @application.worker.full_name %></h1>
+<%= form_with model: @worker_feedback, url: application_worker_feedbacks_path(@application) do |f| %>
+    <div>
+        <p><%= f.label :comment, 'Comentários:' %></p>
+        <%= f.text_field :comment %>
+    </div>
+    <div>
+        <p><%= f.label :rate, 'Nota:' %></p>
+        <%= f.number_field :rate %>
+    </div>
+    <div>
+        <%= f.submit 'Enviar' %>
+    </div>
+<% end %>

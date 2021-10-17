@@ -1,6 +1,7 @@
 class Application < ApplicationRecord
   belongs_to :job
   belongs_to :worker
+  has_many :worker_feedbacks
   validates :description, :payment, :time_per_week, :expected_deadline, presence: true
   validates :description, length: {maximum: 100}
   validates :payment, numericality: {greater_than: 0}

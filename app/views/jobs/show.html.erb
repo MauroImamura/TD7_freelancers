@@ -1,4 +1,7 @@
-<div><h1>Projeto aguardando profissionais:</h1></div>
+<div><h1>Informações do projeto:</h1></div>
+<% if @job.Finalizado? %>
+    <div><p>Projeto finalizado! Avalie as pessoas que trabalharam no projeto clicando em seus nomes.</p></div>
+<% end %>
 <div>
     <p>Título: <%= @job.title %></p>
     <p>Descrição: <%= @job.description %></p>
@@ -51,7 +54,11 @@
 <% if user_signed_in? && @job.user == current_user %>
     <div>
         <% @job.applications.each do |applies| %>
-            <p>Proposta de: <%= applies.worker.full_name %></p>
+            <% if @job.Finalizado? && applies.Aceita? %>
+                <p>Proposta de: <%= link_to applies.worker.full_name, new_application_worker_feedback_path(applies) %></p>
+            <% elsif %>
+                <p>Proposta de: <%= applies.worker.full_name %></p>
+            <% end %>
             <dl>
                 <dt>Experiências: <%= applies.description %></dt><dd></dd>
                 <dt>Valor da hora trabalhada: <%= number_to_currency(applies.payment) %></dt><dd></dd>
