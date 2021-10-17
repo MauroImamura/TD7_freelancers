@@ -4,4 +4,5 @@ class User < ApplicationRecord
   has_many :jobs
   has_many :worker_feedbacks
   has_many :user_feedbacks
+  has_many :favorited_workers
 end

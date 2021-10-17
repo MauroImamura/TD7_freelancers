@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :workers
   devise_for :users
   root to: 'home#index'
-  resources :workers, only: [:show, :update, :edit]
+  resources :workers, only: [:show, :update, :edit] do
+    resources :favorited_workers, only: [] do
+      post 'add', on: :member
+    end
+  end
   resources :jobs, only: [:show, :new, :create] do
     get 'my_jobs', on: :collection
     get 'accepted_jobs', on: :collection

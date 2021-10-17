@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_044213) do
+ActiveRecord::Schema.define(version: 2021_10_17_191812) do
 
   create_table "applications", force: :cascade do |t|
     t.string "description"
@@ -24,6 +24,26 @@ ActiveRecord::Schema.define(version: 2021_10_17_044213) do
     t.integer "status", default: 5
     t.index ["job_id"], name: "index_applications_on_job_id"
     t.index ["worker_id"], name: "index_applications_on_worker_id"
+  end
+
+  create_table "favorite_workers", force: :cascade do |t|
+    t.boolean "checked"
+    t.integer "user_id", null: false
+    t.integer "worker_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_favorite_workers_on_user_id"
+    t.index ["worker_id"], name: "index_favorite_workers_on_worker_id"
+  end
+
+  create_table "favorited_workers", force: :cascade do |t|
+    t.boolean "checked", default: false
+    t.integer "user_id", null: false
+    t.integer "worker_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_favorited_workers_on_user_id"
+    t.index ["worker_id"], name: "index_favorited_workers_on_worker_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -98,6 +118,10 @@ ActiveRecord::Schema.define(version: 2021_10_17_044213) do
 
   add_foreign_key "applications", "jobs"
   add_foreign_key "applications", "workers"
+  add_foreign_key "favorite_workers", "users"
+  add_foreign_key "favorite_workers", "workers"
+  add_foreign_key "favorited_workers", "users"
+  add_foreign_key "favorited_workers", "workers"
   add_foreign_key "jobs", "users"
   add_foreign_key "user_feedbacks", "jobs"
   add_foreign_key "user_feedbacks", "users"

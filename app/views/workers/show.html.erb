@@ -15,4 +15,7 @@
     <div>
         <p>Contato: <%= @worker.email %></p>
     </div>
+    <div>
+        <%= link_to 'Adicionar aos favoritos', add_worker_favorited_worker_path(@worker), method: :post %>
+    </div>
 </div>
