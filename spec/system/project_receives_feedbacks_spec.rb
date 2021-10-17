@@ -20,7 +20,9 @@ describe 'project recieves feedbacks' do
             visit root_path
             click_on 'Veja seus projetos'
             click_on 'Site de locação de imóveis'
-            click_on worker.full_name
+            within('div#job_applications') do
+                click_on worker.social_name
+            end
 
             expect(page).to have_content('Nota')
             expect(page).to have_content('Comentários')
@@ -44,7 +46,9 @@ describe 'project recieves feedbacks' do
             visit root_path
             click_on 'Veja seus projetos'
             click_on 'Site de locação de imóveis'
-            click_on worker.full_name
+            within('div#job_applications') do
+                click_on worker.social_name
+            end
             fill_in 'Nota', with: 5
             fill_in 'Comentários', with: 'Bom'
             click_on 'Enviar'
@@ -72,7 +76,9 @@ describe 'project recieves feedbacks' do
             visit root_path
             click_on 'Veja seus projetos'
             click_on 'Site de locação de imóveis'
-            click_on worker.full_name
+            within('div#job_applications') do
+                click_on worker.social_name
+            end
             fill_in 'Nota', with: 5
             fill_in 'Comentários', with: 'Bom'
             click_on 'Enviar'

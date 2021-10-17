@@ -1,0 +1,24 @@
+<div><h1>Perfil completo</h1></div>
+<div>
+    <div>
+        <p>Nome completo: <%= @worker.full_name %></p>
+    </div>
+    <div>
+        <p>Nome social: <%= @worker.social_name %></p>
+    </div>
+    <div>
+        <p>Descrição: <%= @worker.description %></p>
+    </div>
+    <div>
+        <p>Formação: <%= @worker.education %></p>
+    </div>
+    <div>
+        <p>Experiência: <%= @worker.experience %></p>
+    </div>
+    <div>
+        <p>Data de nascimento: <%= l @worker.birth_date, format: :simple %></p>
+    </div>
+    <div>
+        <%= link_to 'Editar', edit_worker_path(current_worker) %>
+    </div>
+</div>

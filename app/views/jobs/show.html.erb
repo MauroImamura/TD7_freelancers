@@ -20,6 +20,16 @@
     <% end %>
     <p>Situação: <%= @job.status %></p>
 </div>
+<% if user_signed_in? && @job.user == current_user %>
+    <div id="team_list">
+        <h2>Veja o time de profissionais:</h2>
+        <% @job.applications.each do |applies| %>
+            <% if applies.Aceita? %>
+                <p><%= link_to applies.worker.social_name, worker_path(applies.worker) %></p>
+            <% end %>
+        <% end %>
+    </div>
+<% end %>
 <% if worker_signed_in? && @application != nil %>
     <div>
         <% if @application.errors.any? %>
@@ -61,12 +71,13 @@
 <% end %>
 
 <% if user_signed_in? && @job.user == current_user %>
-    <div>
+    <div id="job_applications">
+        <h3>Todas as propostas:</h3>
         <% @job.applications.each do |applies| %>
             <% if @job.Finalizado? && applies.Aceita? %>
-                <p>Proposta de: <%= link_to applies.worker.full_name, new_application_worker_feedback_path(applies) %></p>
+                <p>Proposta de: <%= link_to applies.worker.social_name, new_application_worker_feedback_path(applies) %></p>
             <% elsif %>
-                <p>Proposta de: <%= applies.worker.full_name %></p>
+                <p>Proposta de: <%= applies.worker.social_name %></p>
             <% end %>
             <dl>
                 <dt>Experiências: <%= applies.description %></dt><dd></dd>
