@@ -31,27 +31,31 @@
         <% end %>
     </div>
     <div>
-        <h2>Envie sua proposta</h2>
-        <%= form_with model: @application, url: job_applications_path(@job) do |f| %>
-            <div>
-                <p><%= f.label :description, 'Conte sua experiência sobre o assunto' %></p>
-                <%= f.text_field :description %>
-            </div>
-            <div>
-                <p><%= f.label :time_per_week, 'Horas de trabalho semanais' %></p>
-                <%= f.text_field :time_per_week %>
-            </div>
-            <div>
-                <p><%= f.label :payment, 'Valor por hora de trabalho' %></p>
-                <%= f.text_field :payment %>
-            </div>
-            <div>
-                <p><%= f.label :expected_deadline, 'Previsão de entrega' %></p>
-                <%= f.date_field :expected_deadline %>
-            </div>
-            <div>
-                <%= f.submit 'Enviar' %>
-            </div>
+        <% if current_worker.social_name.present? && current_worker.full_name.present? && current_worker.birth_date.present? && current_worker.description.present? && current_worker.education.present? && current_worker.experience.present? %>
+            <h2>Envie sua proposta</h2>
+            <%= form_with model: @application, url: job_applications_path(@job) do |f| %>
+                <div>
+                    <p><%= f.label :description, 'Conte sua experiência sobre o assunto' %></p>
+                    <%= f.text_field :description %>
+                </div>
+                <div>
+                    <p><%= f.label :time_per_week, 'Horas de trabalho semanais' %></p>
+                    <%= f.text_field :time_per_week %>
+                </div>
+                <div>
+                    <p><%= f.label :payment, 'Valor por hora de trabalho' %></p>
+                    <%= f.text_field :payment %>
+                </div>
+                <div>
+                    <p><%= f.label :expected_deadline, 'Previsão de entrega' %></p>
+                    <%= f.date_field :expected_deadline %>
+                </div>
+                <div>
+                    <%= f.submit 'Enviar' %>
+                </div>
+            <% end %>
+        <% else %>
+            <p>Complete seu perfil para enviar propostas: <%= link_to 'completar perfil.', edit_worker_path(current_worker) %></p>
         <% end %>
     </div>
 <% end %>

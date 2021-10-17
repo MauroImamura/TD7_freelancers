@@ -77,4 +77,26 @@ describe 'freelancer submits application' do
         expect(page).to have_content('Horas de trabalho semanais não pode ficar em branco')
         expect(page).to have_content('Previsão de entrega não pode ficar em branco')
     end
+
+    it 'only with complete profile' do
+        worker = Worker.create!(email: 'worker@freelancers.com.br', password: '123456')
+        user = User.create!(email: 'usuario@freelancers.com.br', password: '123456')
+        Job.create!(title: 'Site de locação de imóveis',
+                            description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
+                            skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
+                            payment: 25, deadline: '15/11/2021', user: user)
+        
+        login_as worker, scope: :worker
+        visit root_path
+        click_on 'Encontre projetos'
+        click_on 'Site de locação de imóveis'
+        click_on 'completar perfil'
+
+        expect(current_path).to eq edit_worker_path(worker)
+        expect(page).not_to have_content('Envie sua proposta')
+        expect(page).not_to have_content('Conte sua experiência sobre o assunto')
+        expect(page).not_to have_content('Valor por hora de trabalho')
+        expect(page).not_to have_content('Horas de trabalho semanais')
+        expect(page).not_to have_content('Previsão de entrega')
+    end
 end
