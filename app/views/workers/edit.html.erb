@@ -1,0 +1,35 @@
+<div>
+    <h1>Complete seu perfil:</h1>
+    <p>Insira abaixo informações que ajudem os contratantes a identificarem suas competências para os projetos.</p>
+</div>
+<div>
+    <%= form_with model: @worker do |f| %>
+        <div>
+            <p><%= f.label :full_name, 'Nome completo' %></p>
+            <%= f.text_field :full_name %>
+        </div>
+        <div>
+            <p><%= f.label :social_name, 'Nome social' %></p>
+            <%= f.text_field :social_name %>
+        </div>
+        <div>
+            <p><%= f.label :description, 'Sobre você' %></p>
+            <%= f.text_field :description %>
+        </div>
+        <div>
+            <p><%= f.label :birth_date, 'Data de nascimento' %></p>
+            <%= f.date_field :birth_date %>
+        </div>
+        <div>
+            <p><%= f.label :education, 'Formação' %></p>
+            <%= f.text_field :education %>
+        </div>
+        <div>
+            <p><%= f.label :experience, 'Experiência' %></p>
+            <%= f.text_field :experience %>
+        </div>
+        <div>
+            <%= f.submit 'Enviar' %>
+        </div>
+    <% end %>
+</div>

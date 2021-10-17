@@ -16,6 +16,6 @@
         <p>Experiência: <%= @worker.experience %></p>
     </div>
     <div>
-        <p>Data de nascimento: <%= @worker.birth_date %></p>
+        <p>Data de nascimento: <%= l @worker.birth_date, format: :simple %></p>
     </div>
 </div>

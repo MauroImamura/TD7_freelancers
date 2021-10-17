@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :workers
   devise_for :users
   root to: 'home#index'
-  resources :workers, only: [:show]
+  resources :workers, only: [:show, :update, :edit]
   resources :jobs, only: [:show, :new, :create] do
     get 'my_jobs', on: :collection
     get 'accepted_jobs', on: :collection
@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get 'my_profile', to: 'workers#my_profile'
   get 'job_list', to: 'jobs#jobs_list'
   get 'worker_list', to: 'workers#workers_list'
+  get 'complete_profile', to: 'workers#complete_profile'
 end

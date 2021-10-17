@@ -10,4 +10,14 @@ class WorkersController < ApplicationController
     def workers_list
         @workers = Worker.all
     end
+
+    def edit
+        @worker = current_worker
+    end
+
+    def update
+        @worker = current_worker
+        @worker.update(params.require(:worker).permit(:full_name,:social_name,:description,:birth_date,:education,:experience))
+        redirect_to my_profile_path
+    end
 end
