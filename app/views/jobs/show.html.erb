@@ -10,6 +10,14 @@
             <% end %>
         <% end %>
     <% end %>
+<% elsif @job.Contratando? %>
+    <% if worker_signed_in? %>
+        <% @job.applications.each do |applies| %>
+            <% if current_worker == applies.worker %>
+                <div><p>Você já enviou uma proposta! <%= link_to 'Clique aqui para cancelar', application_path(applies), method: :delete %>.</p></div>
+            <% end %>
+        <% end %>
+    <% end %>
 <% end %>
 
 <div>

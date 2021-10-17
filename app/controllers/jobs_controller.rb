@@ -4,7 +4,6 @@ class JobsController < ApplicationController
     def show
         @job = Job.find(params[:id])
         @application = Application.new
-        flash[:notice] = 'Projeto cadastrado com sucesso!'
     end
 
     def new
@@ -15,7 +14,7 @@ class JobsController < ApplicationController
         @job = Job.new(params.require(:job).permit(:title, :description, :skills, :payment, :in_person, :deadline, :user_id))
         @job.user = current_user
         if @job.save
-            redirect_to @job
+            redirect_to @job, notice: 'Projeto cadastrado com sucesso!'
         else
             render :new
         end

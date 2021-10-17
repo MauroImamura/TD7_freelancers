@@ -4,4 +4,5 @@
     <p>Valor por hora de trabalho: <%= number_to_currency(@application.payment) %></p>
     <p>Horas de trabalho semanais: <%= @application.time_per_week %> horas</p>
     <p>Previsão de entrega: <%= l @application.expected_deadline, format: :simple %></p>
+    <p><%= link_to 'Voltar para projeto', job_path(@application.job) %></p>
 </div>
