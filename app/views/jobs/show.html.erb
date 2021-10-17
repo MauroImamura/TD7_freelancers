@@ -1,9 +1,13 @@
 <div><h1>Informações do projeto:</h1></div>
 <% if @job.Finalizado? %>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && @job.user == current_user %>
         <div><p>Projeto finalizado! Avalie as pessoas que trabalharam no projeto clicando em seus nomes.</p></div>
     <% elsif worker_signed_in? %>
-        <div><p>Projeto finalizado! <%= link_to 'Avalie o contratante clicando aqui', new_job_user_feedback_path(@job) %>.</p></div>
+        <% @job.applications.each do |applies| %>
+            <% if current_worker == applies.worker %>
+                <div><p>Projeto finalizado! <%= link_to 'Avalie o contratante clicando aqui', new_job_user_feedback_path(@job) %>.</p></div>
+            <% end %>
+        <% end %>
     <% end %>
 <% end %>
 <div>
