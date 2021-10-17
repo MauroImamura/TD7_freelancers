@@ -1,4 +1,13 @@
 <h1>Dê seu feedback sobre <%= @application.worker.full_name %></h1>
+<div>
+    <% if @worker_feedback.errors.any? %>
+        <ul>
+            <% @worker_feedback.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
 <%= form_with model: @worker_feedback, url: application_worker_feedbacks_path(@application) do |f| %>
     <div>
         <p><%= f.label :comment, 'Comentários:' %></p>

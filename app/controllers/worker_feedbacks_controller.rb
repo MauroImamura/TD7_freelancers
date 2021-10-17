@@ -14,11 +14,11 @@ class WorkerFeedbacksController < ApplicationController
         @worker_feedback.user = current_user
         @worker_feedback.worker = @worker_feedback.application.worker
         if @worker_feedback.save
-            #redirect_to @application.job, alert: 'Feedback enviado com sucesso!'
             redirect_to @worker_feedback, notice: 'Feedback enviado com sucesso!'
         else
             @job = @worker_feedback.application.job
-            render "jobs/show"
+            @application = @worker_feedback.application
+            render :new
         end
     end
 end

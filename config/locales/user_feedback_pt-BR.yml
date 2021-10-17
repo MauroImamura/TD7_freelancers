@@ -1,0 +1,9 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user_feedback:
+    attributes:
+      user_feedback:
+        rate: 'Nota'
+        comment: 'Comentários'

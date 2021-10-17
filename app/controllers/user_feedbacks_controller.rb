@@ -13,11 +13,11 @@ class UserFeedbacksController < ApplicationController
         @user_feedback.job = Job.find(params[:job_id])
         @user_feedback.worker = current_worker
         @user_feedback.user = @user_feedback.job.user
-        if @user_feedback.save!
+        if @user_feedback.save
             redirect_to @user_feedback , notice: 'Feedback enviado com sucesso!'
         else
             @job = @user_feedback.job
-            render "jobs/show"
+            render :new
         end
     end
 end

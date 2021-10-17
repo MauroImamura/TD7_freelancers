@@ -1,4 +1,13 @@
 <h1>Dê seu feedback sobre <%= @job.user.email %></h1>
+<div>
+    <% if @user_feedback.errors.any? %>
+        <ul>
+            <% @user_feedback.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    <% end %>
+</div>
 <%= form_with model: @user_feedback, url: job_user_feedbacks_path(@job) do |f| %>
     <div>
         <p><%= f.label :comment, 'Comentários:' %></p>
