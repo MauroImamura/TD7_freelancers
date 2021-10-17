@@ -4,8 +4,8 @@
 </div>
 </div>
     <p><%= link_to 'Encontre projetos', job_list_path %></p>
+    <p><%= link_to 'Encontre profissionais', worker_list_path %></p>
     <% if user_signed_in? %>
-        <p><%= link_to 'Encontre profissionais' %></p>
         <p><%= link_to 'Cadastre um projeto', new_job_path  %></p>
         <p><%= link_to 'Veja seus projetos', my_jobs_jobs_path  %></p>
     <% elsif worker_signed_in? %>
