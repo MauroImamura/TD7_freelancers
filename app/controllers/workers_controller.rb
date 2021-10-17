@@ -9,6 +9,11 @@ class WorkersController < ApplicationController
 
     def workers_list
         @workers = Worker.all
+        if user_signed_in?
+            @favoritos = current_user.favorited_workers
+            @favorited_workers = []
+            @favoritos.each {|f| @favorited_workers << f.worker.social_name}
+        end
     end
 
     def edit
