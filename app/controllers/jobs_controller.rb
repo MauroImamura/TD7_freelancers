@@ -44,4 +44,9 @@ class JobsController < ApplicationController
         @job.Finalizado!
         redirect_to @job
     end
+
+    def search
+        @jobs = Job.where('title like ? OR description like ? OR skills like ?',
+                            "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%")
+    end
 end

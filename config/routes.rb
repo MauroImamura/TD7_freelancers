@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   get 'job_list', to: 'jobs#jobs_list'
   get 'worker_list', to: 'workers#workers_list'
   get 'complete_profile', to: 'workers#complete_profile'
+  get 'search', to:"jobs#search"
 end

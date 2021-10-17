@@ -1,10 +1,6 @@
-<div><h1>Projetos disponíveis para propostas</h1></div>
+<div><h1>Resultado da sua busca:</h1></div>
 <div>
-    <%= form_with url: search_path, method: :get do %>
-        <%= label_tag :q, 'Busca:' %>
-        <%= text_field_tag :q %>
-        <%= submit_tag 'Pesquisar' %>
-    <% end %>
+    <%= link_to 'Ver todos os projeto', job_list_path %>
 </div>
 <div>
     <% if @jobs.any? %>
