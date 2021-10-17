@@ -3,4 +3,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :jobs
   has_many :worker_feedbacks
+  has_many :user_feedbacks
 end

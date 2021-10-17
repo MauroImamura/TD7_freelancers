@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'accepted_jobs', on: :collection
     post 'finish_hiring', on: :member
     post 'finish_project', on: :member
+    resources :user_feedbacks, only: [:show, :create, :new], shallow: true
     resources :applications, only: [:show, :create], shallow: true do
       resources :worker_feedbacks, only: [:show, :create, :new]
       post 'accept', on: :member

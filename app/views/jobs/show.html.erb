@@ -1,9 +1,14 @@
 <div><h1>Informações do projeto:</h1></div>
 <% if @job.Finalizado? %>
-    <div><p>Projeto finalizado! Avalie as pessoas que trabalharam no projeto clicando em seus nomes.</p></div>
+    <% if user_signed_in? %>
+        <div><p>Projeto finalizado! Avalie as pessoas que trabalharam no projeto clicando em seus nomes.</p></div>
+    <% elsif worker_signed_in? %>
+        <div><p>Projeto finalizado! <%= link_to 'Avalie o contratante clicando aqui', new_job_user_feedback_path(@job) %>.</p></div>
+    <% end %>
 <% end %>
 <div>
     <p>Título: <%= @job.title %></p>
+    <p>Contratante: <%= @job.user.email %></p>
     <p>Descrição: <%= @job.description %></p>
     <p>Habilidades exigidas: <%= @job.skills %></p>
     <p>Pagamento por hora: <%= number_to_currency(@job.payment) %></p>
@@ -15,7 +20,7 @@
     <% end %>
     <p>Situação: <%= @job.status %></p>
 </div>
-<% if worker_signed_in? %>
+<% if worker_signed_in? && @application != nil %>
     <div>
         <% if @application.errors.any? %>
             <ul>
