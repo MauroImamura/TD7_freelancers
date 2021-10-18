@@ -2,7 +2,7 @@
 
 <% if @job.Finalizado? %>
     <% if user_signed_in? && @job.user == current_user %>
-        <div><p>Projeto finalizado! Avalie as pessoas que trabalharam no projeto clicando em seus nomes.</p></div>
+        <div><p style="background-color: darkkhaki; font-size: 20px; text-align: center; color: black">Projeto finalizado! Avalie as pessoas que trabalharam no projeto clicando em seus nomes na lista de propostas.</p></div>
     <% elsif worker_signed_in? %>
         <% @job.applications.each do |applies| %>
             <% if current_worker == applies.worker %>
@@ -37,7 +37,7 @@
 
 <% if user_signed_in? && @job.user == current_user %>
     <div id="team_list">
-        <h2>Veja o time de profissionais:</h2>
+        <h3>Veja o time de profissionais: clique em seus nomes para visualizar o perfil completo</h3>
         <% @job.applications.each do |applies| %>
             <% if applies.Aceita? %>
                 <p><%= link_to applies.worker.social_name, worker_path(applies.worker) %></p>
