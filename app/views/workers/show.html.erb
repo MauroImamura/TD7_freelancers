@@ -16,6 +16,9 @@
         <p>Contato: <%= @worker.email %></p>
     </div>
     <div>
+        <%= link_to 'Lista de feedbacks', worker_feedback_list_worker_path(@worker) %>
+    </div>
+    <div>
         <%= link_to 'Adicionar aos favoritos', add_worker_favorited_worker_path(@worker), method: :post %>
     </div>
 </div>
