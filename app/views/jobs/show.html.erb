@@ -60,7 +60,7 @@
     <% end %>
 <% end %>
 
-<% if worker_signed_in? && @application != nil %>
+<% if worker_signed_in? && @application != nil && @job.Contratando? %>
     <div>
         <% if @application.errors.any? %>
             <ul>
@@ -128,3 +128,6 @@
         <% end %>
     </div>
 <% end %>
+<div>
+    <%= link_to 'Ver todos os projeto', job_list_path %>
+</div>

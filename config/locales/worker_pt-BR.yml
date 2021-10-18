@@ -6,3 +6,4 @@ pt-BR:
     attributes:
       worker:
         password: 'Senha'
+        birth-date: 'Data de nascimento'

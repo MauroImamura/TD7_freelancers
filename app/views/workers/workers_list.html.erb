@@ -4,8 +4,12 @@
         <% @workers.each do |worker| %>
             <% if worker.social_name.present? && worker.full_name.present? && worker.birth_date.present? && worker.description.present? && worker.education.present? && worker.experience.present? %>
                 <dl>
-                    <% if @favorited_workers.include?(worker.social_name) %>
-                        <dt>Nome: </dt><dd><%= link_to worker.social_name, worker_path(worker) %> (favorito)</dd>
+                    <% if user_signed_in? %>
+                        <% if @favorited_workers.include?(worker.social_name) %>
+                            <dt>Nome: </dt><dd><%= link_to worker.social_name, worker_path(worker) %> (favorito)</dd>
+                        <% else %>
+                            <dt>Nome: </dt><dd><%= link_to worker.social_name, worker_path(worker) %></dd>
+                        <% end %>
                     <% else %>
                         <dt>Nome: </dt><dd><%= link_to worker.social_name, worker_path(worker) %></dd>
                     <% end %>
