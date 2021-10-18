@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
   resources :workers, only: [:show, :update, :edit] do
+    get 'worker_feedback_list', on: :member
     resources :favorited_workers, only: [] do
       post 'add', on: :member
     end

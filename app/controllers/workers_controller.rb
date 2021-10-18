@@ -25,4 +25,9 @@ class WorkersController < ApplicationController
         @worker.update(params.require(:worker).permit(:full_name,:social_name,:description,:birth_date,:education,:experience))
         redirect_to my_profile_path
     end
+
+    def worker_feedback_list
+        @worker = Worker.find(params[:id])
+        
+    end
 end

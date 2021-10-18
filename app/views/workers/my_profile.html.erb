@@ -19,6 +19,9 @@
         <p>Data de nascimento: <%= l @worker.birth_date, format: :simple %></p>
     </div>
     <div>
+        <%= link_to 'Lista de feedbacks', worker_feedback_list_worker_path(current_worker) %>
+    </div>
+    <div>
         <%= link_to 'Editar', edit_worker_path(current_worker) %>
     </div>
 </div>

@@ -1,0 +1,14 @@
+<div><h1>Sua lista de feedbbacks:</h1></div>
+<div>
+    <% if @worker.worker_feedbacks.any? %>
+        <% @worker.worker_feedbacks.each do |feedback| %>
+            <p>Nota <%= feedback.rate %></p>
+            <p>Comentários: <%= feedback.comment %></p>
+        <% end %>
+    <% else %>
+        <p>Você ainda não possui feedbacks</p>
+    <% end %>
+</div>
+<div>
+    <%link_to 'Voltar para perfil', my_profile_path%>
+</div>
