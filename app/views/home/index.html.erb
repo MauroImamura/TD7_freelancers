@@ -2,13 +2,14 @@
     <h1 style="margin: 50px; text-align: center; font-size: 70px">Freelancers</h1>
     <p style="margin: auto; text-align: center; font-size: 30px">Boas vindas ao sistema de contratação de freelancers!</p>
 </div>
-<div style="text-align: center; font-size: 25px">
-    <p><%= link_to 'Encontre projetos', job_list_path %></p>
-    <p><%= link_to 'Encontre profissionais', worker_list_path %></p>
+<div></div>
+<div align="center" style="margin-top: 50px">
+    <a role="button" class="btn btn-outline-warning btn-lg" style="margin: 25px" href="<%=job_list_path%>">Encontre projetos</a>
+    <a role="button" class="btn btn-outline-warning btn-lg" style="margin: 25px" href="<%=worker_list_path%>">Encontre profissionais</a>
     <% if user_signed_in? %>
-        <p><%= link_to 'Cadastre um projeto', new_job_path  %></p>
-        <p><%= link_to 'Veja seus projetos', my_jobs_jobs_path  %></p>
+        <a role="button" class="btn btn-outline-warning btn-lg" style="margin: 25px" href="<%=new_job_path%>">Cadastre um projeto</a>
+        <a role="button" class="btn btn-outline-warning btn-lg" style="margin: 25px" href="<%=my_jobs_jobs_path%>">Veja seus projetos</a>
     <% elsif worker_signed_in? %>
-        <p><%= link_to 'Projetos que participo', accepted_jobs_jobs_path %></p>
+        <a role="button" class="btn btn-outline-warning btn-lg" style="margin: 25px" href="<%=accepted_jobs_jobs_path%>">Projetos que participo</a>
     <% end %>
 </div>
