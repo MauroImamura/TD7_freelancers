@@ -7,3 +7,6 @@ pt-BR:
       worker_feedback:
         rate: 'Nota'
         comment: 'Comentários'
+        user: 'Contratante'
+        worker: 'Profissional'
+        application: 'Proposta'
