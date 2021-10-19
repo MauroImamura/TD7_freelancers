@@ -1,5 +1,7 @@
-<div><h1>Informações do projeto:</h1></div>
-
+<div style="margin: 50px"><h1>Informações do projeto:</h1></div>
+<div style="background-color: #252540; font-size: 20px">
+    <%= link_to 'Ver todos os projeto', job_list_path %>
+</div>
 <% if @job.Finalizado? %>
     <% if user_signed_in? && @job.user == current_user %>
         <div><p style="background-color: darkkhaki; font-size: 20px; text-align: center; color: black">Projeto finalizado! Avalie as pessoas que trabalharam no projeto clicando em seus nomes na lista de propostas.</p></div>
@@ -14,42 +16,45 @@
     <% if worker_signed_in? %>
         <% @job.applications.each do |applies| %>
             <% if current_worker == applies.worker %>
-                <div><p>Você já enviou uma proposta! <%= link_to 'Clique aqui para cancelar', application_path(applies), method: :delete %>.</p></div>
+                <div style="font-size: 20px; margin: 15px"><p>Você já enviou uma proposta! <%= link_to 'Clique aqui para cancelar', application_path(applies), method: :delete %>.</p></div>
             <% end %>
         <% end %>
     <% end %>
 <% end %>
 
-<div>
-    <p>Título: <%= @job.title %></p>
-    <p>Contratante: <%= @job.user.email %></p>
-    <p>Descrição: <%= @job.description %></p>
-    <p>Habilidades exigidas: <%= @job.skills %></p>
-    <p>Pagamento por hora: <%= number_to_currency(@job.payment) %></p>
-    <p>Data limite para proposta: <%= l @job.deadline, format: :simple %></p>
-    <% if @job.in_person? %>
-        <p>Trabalho presencial</p>
-    <% else %>
-        <p>Trabalho remoto</p>
-    <% end %>
-    <p>Situação: <%= @job.status %></p>
+<div style="margin: 30px; max-width: 50%">
+    <H2 style="font-size: 25px; margin: 25px">Título: <%= @job.title %></H2>
+    <dl>
+        <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Contratante: </dt><dd style="margin: 10px"><%= @job.user.email %></dd>
+        <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Descrição: </dt><dd style="margin: 10px"><%= @job.description %></dd>
+        <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Habilidades exigidas: </dt><dd style="margin: 10px"><%= @job.skills %></dd>
+        <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Pagamento por hora: </dt><dd style="margin: 10px"><%= number_to_currency(@job.payment) %></dd>
+        <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Data limite para proposta: </dt><dd style="margin: 10px"><%= l @job.deadline, format: :simple %></dd>
+        <% if @job.in_person? %>
+            <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Trabalho presencial</dt>
+        <% else %>
+            <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Trabalho remoto</dt>
+        <% end %>
+        <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Situação: </dt><dd style="margin: 10px"><%= @job.status %></dd>
+    </dl>
 </div>
 
 <% if user_signed_in? && @job.user == current_user %>
     <div id="team_list">
-        <h3>Veja o time de profissionais: clique em seus nomes para visualizar o perfil completo</h3>
-        <% @job.applications.each do |applies| %>
-            <% if applies.Aceita? %>
-                <p><%= link_to applies.worker.social_name, worker_path(applies.worker) %></p>
+        <h3 style="font-size: 25px; margin: 25px; margin-bottom: 0px; border-top-style: solid; border-top-color: #FFF; border-top-width: 1px">Veja o time de profissionais:</h3>
+        <p>clique em seus nomes para visualizar o perfil completo</p>
+            <% @job.applications.each do |applies| %>
+                <% if applies.Aceita? %>
+                    <p><%= link_to applies.worker.social_name, worker_path(applies.worker) %></p>
+                <% end %>
             <% end %>
-        <% end %>
     </div>
 <% end %>
 <% if worker_signed_in? %>
     <% @job.applications.each do |applies| %>
         <% if applies.Aceita? && current_worker == applies.worker %>
             <div id="team_list">
-            <h2>Veja o time de profissionais:</h2>
+            <h3 style="font-size: 25px; margin: 25px; margin-bottom: 0px; border-top-style: solid; border-top-color: #FFF; border-top-width: 1px">Veja o time de profissionais:</h3>
             <% @job.applications.each do |applies| %>
                 <% if applies.Aceita? %>
                 <p><%= link_to applies.worker.social_name, worker_path(applies.worker) %></p>
@@ -72,22 +77,22 @@
     </div>
     <div>
         <% if current_worker.social_name.present? && current_worker.full_name.present? && current_worker.birth_date.present? && current_worker.description.present? && current_worker.education.present? && current_worker.experience.present? %>
-            <h2>Envie sua proposta</h2>
+            <h3 style="font-size: 25px; margin: 25px; border-top-style: solid; border-top-color: #FFF; border-top-width: 1px">Envie sua proposta</h3>
             <%= form_with model: @application, url: job_applications_path(@job) do |f| %>
                 <div>
-                    <p><%= f.label :description, 'Conte sua experiência sobre o assunto' %></p>
+                    <p style="margin-bottom: 0px; margin-top: 15px"><%= f.label :description, 'Conte sua experiência sobre o assunto' %></p>
                     <%= f.text_field :description %>
                 </div>
                 <div>
-                    <p><%= f.label :time_per_week, 'Horas de trabalho semanais' %></p>
+                    <p style="margin-bottom: 0px; margin-top: 15px"><%= f.label :time_per_week, 'Horas de trabalho semanais' %></p>
                     <%= f.text_field :time_per_week %>
                 </div>
                 <div>
-                    <p><%= f.label :payment, 'Valor por hora de trabalho' %></p>
+                    <p style="margin-bottom: 0px; margin-top: 15px"><%= f.label :payment, 'Valor por hora de trabalho' %></p>
                     <%= f.text_field :payment %>
                 </div>
                 <div>
-                    <p><%= f.label :expected_deadline, 'Previsão de entrega' %></p>
+                    <p style="margin-bottom: 0px; margin-top: 15px"><%= f.label :expected_deadline, 'Previsão de entrega' %></p>
                     <%= f.date_field :expected_deadline %>
                 </div>
                 <div>
@@ -101,33 +106,30 @@
 <% end %>
 
 <% if user_signed_in? && @job.user == current_user %>
-    <div id="job_applications">
-        <h3>Todas as propostas:</h3>
+    <h3 style="font-size: 25px; margin: 25px; border-top-style: solid; border-top-color: #FFF; border-top-width: 1px">Todas as propostas:</h3>
+    <div id="job_applications" style="margin: 30px; max-width: 50%">
         <% @job.applications.each do |applies| %>
             <% if @job.Finalizado? && applies.Aceita? %>
-                <p>Proposta de: <%= link_to applies.worker.social_name, new_application_worker_feedback_path(applies) %></p>
+                <p style="font-size: 20px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Proposta de: <%= link_to applies.worker.social_name, new_application_worker_feedback_path(applies) %></p>
             <% elsif %>
-                <p>Proposta de: <%= applies.worker.social_name %></p>
+                <p style="font-size: 20px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Proposta de: <%= applies.worker.social_name %></p>
             <% end %>
-            <dl>
-                <dt>Experiências: <%= applies.description %></dt><dd></dd>
-                <dt>Valor da hora trabalhada: <%= number_to_currency(applies.payment) %></dt><dd></dd>
-                <dt>Dedicação semanal: <%= applies.time_per_week %> horas</dt><dd></dd>
-                <dt>Prazo de entrega estimado: <%= l applies.expected_deadline, format: :simple %></dt><dd></dd>
-                <dt>Situação: <%= applies.status %></dt>
-            </dl>
+            <ul style="list-style-type:none">
+                <li>Experiências: <%= applies.description %></li>
+                <li>Valor da hora trabalhada: <%= number_to_currency(applies.payment) %></li>
+                <li>Dedicação semanal: <%= applies.time_per_week %> horas</li>
+                <li>Prazo de entrega estimado: <%= l applies.expected_deadline, format: :simple %></li>
+                <li>Situação: <%= applies.status %></li>
+            </ul>
             <% if applies.Pendente? %>
                 <%= link_to 'Aceitar proposta', accept_application_path(applies.id), method: :post %>
                 <%= link_to 'Recusar proposta', refuse_application_path(applies.id), method: :post %>
             <% end %>
         <% end %>
         <% if @job.Contratando? %>
-            <%= link_to 'Encerrar contratações', finish_hiring_job_path(@job.id), method: :post %>
+            <p style="font-size: 20px"><%= link_to 'Encerrar contratações', finish_hiring_job_path(@job.id), method: :post %></p>
         <% elsif @job.Executando? %>
-            <%= link_to 'Finalizar projeto', finish_project_job_path(@job.id), method: :post %>
+            <p style="font-size: 20px"><%= link_to 'Finalizar projeto', finish_project_job_path(@job.id), method: :post %></p>
         <% end %>
     </div>
 <% end %>
-<div>
-    <%= link_to 'Ver todos os projeto', job_list_path %>
-</div>
