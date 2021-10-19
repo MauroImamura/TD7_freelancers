@@ -1,21 +1,23 @@
-<div><h1>Lista de profissionais</h1></div>
-<div>
+<div style="margin: 50px"><h1>Lista de profissionais</h1></div>
+<div style="margin: 30px; max-width: 50%">
     <% if @workers.any? %>
         <% @workers.each do |worker| %>
             <% if worker.social_name.present? && worker.full_name.present? && worker.birth_date.present? && worker.description.present? && worker.education.present? && worker.experience.present? %>
-                <dl>
-                    <% if user_signed_in? %>
-                        <% if @favorited_workers.include?(worker.social_name) %>
-                            <dt>Nome: </dt><dd><%= link_to worker.social_name, worker_path(worker) %> (favorito)</dd>
+                <div style="border-style: solid; border-color: #888888; border-width: 2px; margin-bottom: -2px">    
+                    <dl>
+                        <% if user_signed_in? %>
+                            <% if @favorited_workers.include?(worker.social_name) %>
+                                <dt style="font-size: 20px"></dt><dd style="font-size: 20px"><%= link_to worker.social_name, worker_path(worker) %> (favorito)</dd>
+                            <% else %>
+                                <dt style="font-size: 20px"></dt><dd style="font-size: 20px"><%= link_to worker.social_name, worker_path(worker) %></dd>
+                            <% end %>
                         <% else %>
-                            <dt>Nome: </dt><dd><%= link_to worker.social_name, worker_path(worker) %></dd>
+                            <dt style="font-size: 20px"></dt><dd style="font-size: 20px"><%= link_to worker.social_name, worker_path(worker) %></dd>
                         <% end %>
-                    <% else %>
-                        <dt>Nome: </dt><dd><%= link_to worker.social_name, worker_path(worker) %></dd>
-                    <% end %>
-                    <dt>Descrição: </dt><dd><%= worker.description %></dd>
-                    <dt>Contato: </dt><dd><%= worker.email %></dd>
-                </dl>
+                        <dt>Descrição: </dt><dd><%= worker.description %></dd>
+                        <dt>Contato: </dt><dd><%= worker.email %></dd>
+                    </dl>
+                </div>
             <% end %>
         <% end %>
     <% else %>

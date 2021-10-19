@@ -1,18 +1,22 @@
-<div><h1>Projetos disponíveis para propostas</h1></div>
-<div>
+<div style="margin: 50px"><h1>Projetos disponíveis para propostas</h1></div>
+<div style="background-color: #252540">
     <%= form_with url: search_path, method: :get do %>
         <%= label_tag :q, 'Busca:' %>
         <%= text_field_tag :q %>
         <%= submit_tag 'Pesquisar' %>
     <% end %>
 </div>
-<div>
+<div style="margin: 30px; max-width: 50%">
     <% if @jobs.any? %>
         <% @jobs.each do |job| %>
             <% if job.Contratando? %>
-                <p><%= link_to job.title, job_path(job) %></p>
-                <p>Pagamento por hora: <%= number_to_currency(job.payment) %></p>
-                <p><%= l job.deadline, format: :simple %></p>
+                <div style="border-style: solid; border-color: #888888; border-width: 2px; margin-bottom: -2px">
+                    <dl>
+                        <dt></dt><dd style="font-size: 20px"><%= link_to job.title, job_path(job) %></dd>
+                        <dt>Pagamento por hora: </dt><dd><%= number_to_currency(job.payment) %></dd>
+                        <dt>Data limite: </dt><dd><%= l job.deadline, format: :simple %></dd>
+                    </dl>
+                </div>
             <% end %>
         <% end %>
     <% else %>
