@@ -1,8 +1,8 @@
 <div>
-    <h1 style="margin: 50px; text-align: center; font-size: 70px">Freelancers</h1>
-    <p style="margin: auto; text-align: center; font-size: 30px">Boas vindas ao sistema de contratação de freelancers!</p>
+    <h1 style="padding: 50px; text-align: center; font-size: 70px">Freelancers</h1>
+    <p style="padding: auto; text-align: center; font-size: 30px">Boas vindas ao sistema de contratação de freelancers!</p>
 </div>
-<div align="center" style="margin-top: 50px">
+<div align="center" style="padding-top: 50px">
     <a role="button" class="btn btn-outline-warning btn-lg" style="margin: 25px" href="<%=job_list_path%>">Encontre projetos</a>
     <a role="button" class="btn btn-outline-warning btn-lg" style="margin: 25px" href="<%=worker_list_path%>">Encontre profissionais</a>
     <% if user_signed_in? %>
@@ -11,4 +11,7 @@
     <% elsif worker_signed_in? %>
         <a role="button" class="btn btn-outline-warning btn-lg" style="margin: 25px" href="<%=accepted_jobs_jobs_path%>">Projetos que participo</a>
     <% end %>
+</div>
+<div>
+    <p class="text-info" style="max-width: 50%; margin: 35px; font-size: 20px; font-style: italic">FREELANCERS é um ambiente onde profissionais de tecnologia e idealizadores de projetos podem se unir para tirar do papel suas ideias inovadoras.</p>
 </div>
