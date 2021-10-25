@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
-    before_action :authenticate_worker!, only: [:create]
+    before_action :authenticate_worker!, only: [:create, :new, :show]
+    before_action :authenticate_user!, only: [:accept, :refuse]
 
     def show
         @application = Application.find(params[:id])

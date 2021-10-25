@@ -1,4 +1,6 @@
 class FavoritedWorkersController < ApplicationController
+    before_action :authenticate_user!, only: [:add]
+
     def add
         @favorited_worker = FavoritedWorker.new
         @favorited_worker.checked = true

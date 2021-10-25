@@ -1,4 +1,6 @@
 class WorkerFeedbacksController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :create]
+
     def show
         @worker_feedback = WorkerFeedback.find(params[:id])
     end

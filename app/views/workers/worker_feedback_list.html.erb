@@ -1,4 +1,4 @@
-<div><h1>Sua lista de feedbbacks:</h1></div>
+<div><h1>Lista de feedbbacks de <%= @worker.social_name %>:</h1></div>
 <div>
     <% if @worker.worker_feedbacks.any? %>
         <% @worker.worker_feedbacks.each do |feedback| %>

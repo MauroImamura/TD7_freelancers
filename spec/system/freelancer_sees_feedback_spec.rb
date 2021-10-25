@@ -67,6 +67,7 @@ describe 'freelancer sees feedback' do
         click_on worker.social_name
         click_on 'Lista de feedbacks'
 
+        expect(page).to have_content(worker.social_name)
         expect(page).to have_content('Bom conhecimento técnico')
         expect(page).to have_content('Nota 4')
     end

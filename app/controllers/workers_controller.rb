@@ -1,4 +1,6 @@
 class WorkersController < ApplicationController
+    before_action :authenticate_worker!, only: [:my_profile, :edit, :update]
+
     def show
         @worker = Worker.find(params[:id])
     end
