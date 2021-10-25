@@ -19,51 +19,51 @@ davi_juda= Worker.create!(email: 'davi@freelancers.com.br', password: '123456', 
 job1 = Job.create!(title: 'Site de locação de imóveis',
                                     description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                     skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                    payment: 30, deadline: '15/11/2021', user: abraao_avinu, status: 10)
+                                    payment: 30, deadline: 20.days.from_now, user: abraao_avinu, status: 10)
 job2 = Job.create!(title: 'Site de locação de veículos',
                                     description: 'Criar uma aplicação em que os usuários cadastram seus veículos e disponibilizam para alugar por tempo determinado',
                                     skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                    payment: 35, deadline: '16/11/2021', user: abraao_avinu, status: 30)
+                                    payment: 35, deadline: 20.days.from_now, user: abraao_avinu, status: 30)
 job3 = Job.create!(title: 'Site de reviews de livros',
                                     description: 'Criar uma aplicação em que os usuários submetem opiniões sobre livros',
                                     skills: 'Django, aplicação em pt-BR, EN e ESP.',
-                                    payment: 25, deadline: '17/11/2021', user: isaac_avinu, status: 10)
+                                    payment: 25, deadline: 20.days.from_now, user: isaac_avinu, status: 10)
 job4 = Job.create!(title: 'Site de imagens',
                                     description: 'Criar uma aplicação em que os usuários criam seu banco de imagens para acesso e compartilhamento',
                                     skills: 'Django, aplicação em pt-BR, EN e ESP.',
-                                    payment: 32, deadline: '18/11/2021', user: isaac_avinu, status: 10)
+                                    payment: 32, deadline: 20.days.from_now, user: isaac_avinu, status: 10)
 job5 = Job.create!(title: 'Site de curiosidades',
                                     description: 'Criar uma aplicação para postagem de artigos semanais sobre curiosidades.',
                                     skills: 'Front-end: html, css, javascript',
-                                    payment: 18, deadline: '19/11/2021', user: jaco_avinu, status: 20)
+                                    payment: 18, deadline: 20.days.from_now, user: jaco_avinu, status: 20)
 job6 = Job.create!(title: 'Site de grupos de estudos',
                                     description: 'Criar uma aplicação onde os usuários encontram pessoas para organizarem grupos de estudos.',
                                     skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                    payment: 28, deadline: '20/11/2021', user: jaco_avinu, status: 10)
+                                    payment: 28, deadline: 20.days.from_now, user: jaco_avinu, status: 10)
 appl1 = Application.create!(description: 'Projetos ruby on rails', payment: 35, time_per_week: 8,
-                                    expected_deadline: '10/11/2021', worker: moises_levi, job: job1, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: moises_levi, job: job1, status: 10)
 appl2 = Application.create!(description: 'Projetos ruby on rails', payment: 33, time_per_week: 8,
-                                    expected_deadline: '11/11/2021', worker: aarao_levi, job: job1, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: aarao_levi, job: job1, status: 10)
 appl3 = Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                                    expected_deadline: '12/11/2021', worker: moises_levi, job: job2, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: moises_levi, job: job2, status: 10)
 appl4 = Application.create!(description: 'Projetos ruby on rails', payment: 28, time_per_week: 8,
-                                    expected_deadline: '12/11/2021', worker: davi_juda, job: job2, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: davi_juda, job: job2, status: 10)
 appl5 = Application.create!(description: 'Projetos ruby on rails', payment: 29, time_per_week: 8,
-                                    expected_deadline: '09/11/2021', worker: davi_juda, job: job3, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: davi_juda, job: job3, status: 10)
 appl6 = Application.create!(description: 'Projetos ruby on rails', payment: 29, time_per_week: 8,
-                                    expected_deadline: '11/11/2021', worker: aarao_levi, job: job3, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: aarao_levi, job: job3, status: 10)
 appl7 = Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                                    expected_deadline: '10/11/2021', worker: moises_levi, job: job4, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: moises_levi, job: job4, status: 10)
 appl8 = Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                                    expected_deadline: '08/11/2021', worker: moises_levi, job: job5, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: moises_levi, job: job5, status: 10)
 appl9 = Application.create!(description: 'Projetos ruby on rails', payment: 22, time_per_week: 8,
-                                    expected_deadline: '15/11/2021', worker: davi_juda, job: job5, status: 0)
+                                    expected_deadline: 15.days.from_now, worker: davi_juda, job: job5, status: 0)
 appl10 = Application.create!(description: 'Projetos ruby on rails', payment: 22, time_per_week: 8,
-                                    expected_deadline: '12/11/2021', worker: aarao_levi, job: job5, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: aarao_levi, job: job5, status: 10)
 appl11 = Application.create!(description: 'Projetos ruby on rails', payment: 23, time_per_week: 8,
-                                    expected_deadline: '13/11/2021', worker: davi_juda, job: job6, status: 5)
+                                    expected_deadline: 15.days.from_now, worker: davi_juda, job: job6, status: 5)
 appl12 = Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                                    expected_deadline: '10/11/2021', worker: moises_levi, job: job6, status: 10)
+                                    expected_deadline: 15.days.from_now, worker: moises_levi, job: job6, status: 10)
 favorited_worker1 = FavoritedWorker.create!(user: abraao_avinu, worker: davi_juda, checked: true)
 favorited_worker2 = FavoritedWorker.create!(user: jaco_avinu, worker: moises_levi, checked: true)
 favorited_worker3 = FavoritedWorker.create!(user: jaco_avinu, worker: aarao_levi, checked: true)
