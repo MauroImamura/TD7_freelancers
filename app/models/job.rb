@@ -8,7 +8,7 @@ class Job < ApplicationRecord
   validates :payment, numericality: {greater_than: 0}
   validate :deadline_is_feasible
 
-  enum status: {Contratando: 10, Executando: 20, Finalizado: 30}
+  enum status: {hiring: 10, executing: 20, finished: 30}
 
   private
 

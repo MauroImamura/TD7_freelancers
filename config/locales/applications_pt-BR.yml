@@ -1,5 +1,8 @@
 ---
 pt-BR:
+  refused: 'Recusada'
+  pending: 'Pendente'
+  accepted: 'Aceita'
   activerecord:
     model:
       application: 'Proposta'

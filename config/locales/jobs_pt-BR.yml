@@ -1,5 +1,8 @@
 ---
   pt-BR:
+    hiring: 'Contratando'
+    executing: 'Executando'
+    finished: 'Finalizado'
     activerecord:
       model:
         job: 'Projeto'

@@ -9,7 +9,7 @@
 <div style="margin: 30px; max-width: 50%">
     <% if @jobs.any? %>
         <% @jobs.each do |job| %>
-            <% if job.Contratando? %>
+            <% if job.hiring? %>
                 <div style="border-style: solid; border-color: #888888; border-width: 2px; margin-bottom: -2px">
                     <dl>
                         <dt></dt><dd style="font-size: 20px"><%= link_to job.title, job_path(job) %></dd>

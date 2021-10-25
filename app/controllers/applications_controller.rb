@@ -23,13 +23,13 @@ class ApplicationsController < ApplicationController
 
     def accept
         @application = Application.find(params[:id])
-        @application.Aceita!
+        @application.accepted!
         redirect_to @application.job
     end
 
     def refuse
         @application = Application.find(params[:id])
-        @application.Recusada!
+        @application.refused!
         redirect_to @application.job
     end
 

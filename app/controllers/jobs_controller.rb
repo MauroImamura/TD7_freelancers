@@ -35,13 +35,13 @@ class JobsController < ApplicationController
 
     def finish_hiring
         @job = Job.find(params[:id])
-        @job.Executando!
+        @job.executing!
         redirect_to @job
     end
 
     def finish_project
         @job = Job.find(params[:id])
-        @job.Finalizado!
+        @job.finished!
         redirect_to @job
     end
 

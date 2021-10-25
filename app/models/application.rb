@@ -7,7 +7,7 @@ class Application < ApplicationRecord
   validates :payment, numericality: {greater_than: 0}
   validate :expected_deadline_is_feasible
 
-  enum status: {Recusada: 0, Pendente: 5, Aceita: 10}
+  enum status: {refused: 00, pending: 5, accepted: 10}
 
   private
 

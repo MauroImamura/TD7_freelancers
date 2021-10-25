@@ -2,7 +2,7 @@
 <div style="background-color: #252540; font-size: 20px">
     <%= link_to 'Ver todos os projeto', job_list_path %>
 </div>
-<% if @job.Finalizado? %>
+<% if @job.finished? %>
     <% if user_signed_in? && @job.user == current_user %>
         <div><p style="background-color: darkkhaki; font-size: 20px; text-align: center; color: black">Projeto finalizado! Avalie as pessoas que trabalharam no projeto clicando em seus nomes na lista de propostas.</p></div>
     <% elsif worker_signed_in? %>
@@ -12,7 +12,7 @@
             <% end %>
         <% end %>
     <% end %>
-<% elsif @job.Contratando? %>
+<% elsif @job.hiring? %>
     <% if worker_signed_in? %>
         <% @job.applications.each do |applies| %>
             <% if current_worker == applies.worker %>
@@ -35,7 +35,7 @@
         <% else %>
             <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Trabalho remoto</dt>
         <% end %>
-        <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Situação: </dt><dd style="margin: 10px"><%= @job.status %></dd>
+        <dt style="font-size: 18px; margin: 25px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Situação: </dt><dd style="margin: 10px"><%= t(@job.status) %></dd>
     </dl>
 </div>
 
@@ -44,7 +44,7 @@
         <h3 style="font-size: 25px; margin: 25px; margin-bottom: 0px; border-top-style: solid; border-top-color: #FFF; border-top-width: 1px">Veja o time de profissionais:</h3>
         <p>clique em seus nomes para visualizar o perfil completo</p>
             <% @job.applications.each do |applies| %>
-                <% if applies.Aceita? %>
+                <% if applies.accepted? %>
                     <p><%= link_to applies.worker.social_name, worker_path(applies.worker) %></p>
                 <% end %>
             <% end %>
@@ -52,11 +52,11 @@
 <% end %>
 <% if worker_signed_in? %>
     <% @job.applications.each do |applies| %>
-        <% if applies.Aceita? && current_worker == applies.worker %>
+        <% if applies.accepted? && current_worker == applies.worker %>
             <div id="team_list">
             <h3 style="font-size: 25px; margin: 25px; margin-bottom: 0px; border-top-style: solid; border-top-color: #FFF; border-top-width: 1px">Veja o time de profissionais:</h3>
             <% @job.applications.each do |applies| %>
-                <% if applies.Aceita? %>
+                <% if applies.accepted? %>
                 <p><%= link_to applies.worker.social_name, worker_path(applies.worker) %></p>
                 <% end %>
             <% end %>
@@ -65,7 +65,7 @@
     <% end %>
 <% end %>
 
-<% if worker_signed_in? && @application != nil && @job.Contratando? %>
+<% if worker_signed_in? && @application != nil && @job.hiring? %>
     <div>
         <% if @application.errors.any? %>
             <ul>
@@ -109,7 +109,7 @@
     <h3 style="font-size: 25px; margin: 25px; border-top-style: solid; border-top-color: #FFF; border-top-width: 1px">Todas as propostas:</h3>
     <div id="job_applications" style="margin: 30px; max-width: 50%">
         <% @job.applications.each do |applies| %>
-            <% if @job.Finalizado? && applies.Aceita? %>
+            <% if @job.finished? && applies.accepted? %>
                 <p style="font-size: 20px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Proposta de: <%= link_to applies.worker.social_name, new_application_worker_feedback_path(applies) %></p>
             <% elsif %>
                 <p style="font-size: 20px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Proposta de: <%= applies.worker.social_name %></p>
@@ -119,16 +119,16 @@
                 <li>Valor da hora trabalhada: <%= number_to_currency(applies.payment) %></li>
                 <li>Dedicação semanal: <%= applies.time_per_week %> horas</li>
                 <li>Prazo de entrega estimado: <%= l applies.expected_deadline, format: :simple %></li>
-                <li>Situação: <%= applies.status %></li>
+                <li>Situação: <%= t(applies.status) %></li>
             </ul>
-            <% if applies.Pendente? %>
+            <% if applies.pending? %>
                 <%= link_to 'Aceitar proposta', accept_application_path(applies.id), method: :post %>
                 <%= link_to 'Recusar proposta', refuse_application_path(applies.id), method: :post %>
             <% end %>
         <% end %>
-        <% if @job.Contratando? %>
+        <% if @job.hiring? %>
             <p style="font-size: 20px"><%= link_to 'Encerrar contratações', finish_hiring_job_path(@job.id), method: :post %></p>
-        <% elsif @job.Executando? %>
+        <% elsif @job.executing? %>
             <p style="font-size: 20px"><%= link_to 'Finalizar projeto', finish_project_job_path(@job.id), method: :post %></p>
         <% end %>
     </div>

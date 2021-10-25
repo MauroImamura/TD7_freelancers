@@ -3,7 +3,7 @@
     <p>Você ainda não possui projetos em sua lista.</p>
 <% else %>
     <% @applications.each do |applies| %>
-        <% if applies.Aceita? %>
+        <% if applies.accepted? %>
             <p><%= link_to applies.job.title, job_path(applies.job) %></p>
         <% end %>
     <% end %>
