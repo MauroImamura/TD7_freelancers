@@ -47,4 +47,24 @@ describe 'favorited profiles' do
         expect(page).to have_content('Mauro T (favorito)')
         expect(page).not_to have_content('T Oruam (favorito)')
     end
+
+    it 'without previous login' do
+        worker = Worker.create!(email: 'worker@freelancers.com.br', password: '123456', full_name: 'Mauro T',
+                                    social_name: 'Mauro T', description: 'dev', education: 'superior completo',
+                                    experience: 'aplicações web em rails (portifólio: https://github.com/MauroImamura)',
+                                    birth_date: '18/11/1994'
+                                    )
+        user = User.create!(email: 'usuario@freelancers.com.br', password: '123456')
+        job = Job.create!(title: 'Site de locação de imóveis',
+                                description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
+                                skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
+                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+        
+        visit root_path
+        click_on 'Encontre profissionais'
+        click_on worker.social_name
+        click_on 'Adicionar aos favoritos'
+
+        expect(page).to have_content('Para continuar, efetue login ou registre-se')
+    end
 end

@@ -88,5 +88,71 @@ describe Application do
                 expect(application.errors.full_messages_for(:expected_deadline)).to include('Previsão de entrega inválida, escolha uma data a partir de hoje.')
             end
         end
+
+        context 'uniqueness' do
+            it 'only one application per worker per job' do
+                worker = Worker.create!(email: 'worker@freelancers.com.br', password: '123456', full_name: 'Mauro T',
+                                    social_name: 'Mauro T', description: 'dev', education: 'superior completo',
+                                    experience: 'aplicações web em rails (portifólio: https://github.com/MauroImamura)',
+                                    birth_date: '18/11/1994'
+                                    )
+                user = User.create!(email: 'usuario@freelancers.com.br', password: '123456')
+                job = Job.create!(title: 'Site de locação de imóveis',
+                                    description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
+                                    skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
+                                    payment: 25, deadline: 20.days.from_now , user: user, status: 10)
+                Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
+                                    expected_deadline: 20.days.from_now , job: job, worker: worker)
+                application = Application.create(description: '3 anos de experiência', payment: 40, time_per_week: 10,
+                                    expected_deadline: 20.days.from_now , job: job, worker: worker)
+                application.valid?
+                expect(application.errors.full_messages_for(:worker)).to include("Freelancer você já enviou uma proposta. Cancele a atual antes de mandar uma nova.")
+            end
+
+            it 'only one application per worker per job even after being refused' do
+                worker = Worker.create!(email: 'worker@freelancers.com.br', password: '123456', full_name: 'Mauro T',
+                                    social_name: 'Mauro T', description: 'dev', education: 'superior completo',
+                                    experience: 'aplicações web em rails (portifólio: https://github.com/MauroImamura)',
+                                    birth_date: '18/11/1994'
+                                    )
+                user = User.create!(email: 'usuario@freelancers.com.br', password: '123456')
+                job = Job.create!(title: 'Site de locação de imóveis',
+                                    description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
+                                    skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
+                                    payment: 25, deadline: 20.days.from_now , user: user, status: 10)
+                Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
+                                    expected_deadline: 20.days.from_now , job: job, worker: worker, status: 0)
+                application = Application.create(description: '3 anos de experiência', payment: 40, time_per_week: 10,
+                                    expected_deadline: 20.days.from_now , job: job, worker: worker)
+                application.valid?
+                expect(application.errors.full_messages_for(:worker)).to include("Freelancer você já enviou uma proposta. Cancele a atual antes de mandar uma nova.")
+            end
+
+            it 'accept applications from different workers' do
+                worker1 = Worker.create!(email: 'worker1@freelancers.com.br', password: '123456', full_name: 'Mauro T',
+                                    social_name: 'Mauro T', description: 'dev', education: 'superior completo',
+                                    experience: 'aplicações web em rails (portifólio: https://github.com/MauroImamura)',
+                                    birth_date: '18/11/1994'
+                                    )
+                worker2 = Worker.create!(email: 'worker2@freelancers.com.br', password: '123456', full_name: 'T Oruam',
+                                    social_name: 'T Oruam', description: 'dev', education: 'superior completo',
+                                    experience: 'aplicações web em rails (portifólio: https://github.com/MauroImamura)',
+                                    birth_date: '18/11/1994'
+                                    )
+                user = User.create!(email: 'usuario@freelancers.com.br', password: '123456')
+                job = Job.create!(title: 'Site de locação de imóveis',
+                                    description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
+                                    skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
+                                    payment: 25, deadline: 20.days.from_now , user: user, status: 10)
+                Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
+                                    expected_deadline: 20.days.from_now , job: job, worker: worker1)
+                application = Application.create(description: '3 anos de experiência', payment: 40, time_per_week: 10,
+                                    expected_deadline: 20.days.from_now , job: job, worker: worker2)
+                application.valid?
+                expect(application.errors.full_messages_for(:worker)).to eq([])
+            end
+
+            #TODO: teste para verificar envio de proposta após uma ser cancelada
+        end
     end
 end

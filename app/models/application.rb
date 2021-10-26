@@ -6,6 +6,7 @@ class Application < ApplicationRecord
   validates :description, length: {maximum: 100}
   validates :payment, numericality: {greater_than: 0}
   validate :expected_deadline_is_feasible
+  validates_uniqueness_of :worker, scope: :job_id, message: "você já enviou uma proposta. Cancele a atual antes de mandar uma nova."
 
   enum status: {refused: 00, pending: 5, accepted: 10}
 

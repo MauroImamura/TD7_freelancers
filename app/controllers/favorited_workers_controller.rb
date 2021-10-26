@@ -8,8 +8,6 @@ class FavoritedWorkersController < ApplicationController
         @favorited_worker.worker = Worker.find(params[:id])
         if @favorited_worker.save
             redirect_to @favorited_worker.worker, notice: 'Profissional adicionado aos favoritos'
-        else
-            redirect_to @favorited_worker.worker, notice: 'Não foi possível adicionar aos favoritos'
         end
     end
 end
