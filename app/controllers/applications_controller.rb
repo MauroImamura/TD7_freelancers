@@ -33,10 +33,9 @@ class ApplicationsController < ApplicationController
         redirect_to @application.job
     end
 
-    def destroy
-        apply = Application.find(params[:id])
-        job = apply.job
-        apply.destroy
-        redirect_to job_path(job), notice: 'Proposta cancelada com sucesso!'
+    def cancel
+        @application = Application.find(params[:id])
+        @application.canceled!
+        redirect_to job_path(@application.job_id), notice: 'Proposta cancelada com sucesso!'
     end
 end

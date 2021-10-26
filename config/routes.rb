@@ -14,10 +14,11 @@ Rails.application.routes.draw do
     post 'finish_hiring', on: :member
     post 'finish_project', on: :member
     resources :user_feedbacks, only: [:show, :create, :new], shallow: true
-    resources :applications, only: [:show, :create, :destroy], shallow: true do
+    resources :applications, only: [:show, :create], shallow: true do
       resources :worker_feedbacks, only: [:show, :create, :new]
       post 'accept', on: :member
       post 'refuse', on: :member
+      post 'cancel', on: :member
     end
   end
   get 'my_profile', to: 'workers#my_profile'

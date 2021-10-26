@@ -16,7 +16,7 @@
     <% if worker_signed_in? %>
         <% @job.applications.each do |applies| %>
             <% if current_worker == applies.worker %>
-                <div style="font-size: 20px; margin: 15px"><p>Você já enviou uma proposta! <%= link_to 'Clique aqui para cancelar', application_path(applies), method: :delete %>.</p></div>
+                <div style="font-size: 20px; margin: 15px"><p>Você já enviou uma proposta! <%= link_to 'Clique aqui para cancelar', cancel_application_path(applies.job_id), method: :post %>.</p></div>
             <% end %>
         <% end %>
     <% end %>
