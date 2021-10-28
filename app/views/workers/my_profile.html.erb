@@ -1,4 +1,4 @@
-<div><h1>Meu perfil</h1></div>
+<div style="margin:50px"><h1>Meu perfil</h1></div>
 <div>
     <div>
         <p>Nome completo: <%= @worker.full_name %></p>
@@ -18,10 +18,10 @@
     <div>
         <p>Data de nascimento: <%= l @worker.birth_date, format: :simple %></p>
     </div>
-    <div>
+    <div style="margin:25px; font-size:20px">
         <%= link_to 'Lista de feedbacks', worker_feedback_list_worker_path(current_worker) %>
     </div>
-    <div>
+    <div style="margin:25px; font-size:20px">
         <%= link_to 'Editar', edit_worker_path(current_worker) %>
     </div>
 </div>

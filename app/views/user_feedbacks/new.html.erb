@@ -1,4 +1,4 @@
-<h1>Dê seu feedback sobre <%= @job.user.email %></h1>
+<div style="margin:50px"><h1>Dê seu feedback sobre <%= @job.user.email %></h1></div>
 <p>Escreva comentários sobre a pessoa e dê uma nota de 1 a 5</p>
 <div>
     <% if @user_feedback.errors.any? %>
@@ -10,15 +10,21 @@
     <% end %>
 </div>
 <%= form_with model: @user_feedback, url: job_user_feedbacks_path(@job) do |f| %>
+    <br>
     <div>
         <p><%= f.label :comment, 'Comentários:' %></p>
         <%= f.text_field :comment %>
     </div>
+    <br>
     <div>
         <p><%= f.label :rate, 'Nota:' %></p>
         <%= f.number_field :rate %>
     </div>
+    <br>
     <div>
         <%= f.submit 'Enviar' %>
     </div>
 <% end %>
+<div style= "margin:27px">
+    <%= link_to 'Voltar', job_path(@job)%>
+</div>

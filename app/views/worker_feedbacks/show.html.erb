@@ -1,8 +1,8 @@
-<h1>Dê seu feedback sobre <%= @worker_feedback.worker.full_name %></h1>
-<div>
+<div style="margin:50px"><h1>Dê seu feedback sobre <%= @worker_feedback.worker.full_name %></h1></div>
+<div style="border-style: solid; border-color: #888888; border-width: 2px; max-width: 50%; margin-bottom: -2px">
     <dl>
         <dt>Nota: </dt><dd><%= @worker_feedback.rate %></dd>
         <dt>Comentários: </dt><dd><%= @worker_feedback.comment %></dd>
     </dl>
 </div>
-<div><%= link_to 'Voltar para projeto', job_path(@worker_feedback.application.job) %></div>
+<div style= "margin:27px"><%= link_to 'Voltar para projeto', job_path(@worker_feedback.application.job) %></div>

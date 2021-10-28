@@ -12,31 +12,39 @@
 
 <div>
     <%= form_with(model: @job) do |f| %>
+        <br>
         <div>
             <p><%= f.label :title, 'Título' %></p>
             <%= f.text_field :title %>
         </div>
+        <br>
         <div>
             <p><%= f.label :description, 'Descrição' %></p>
             <%= f.text_field :description %>
         </div>
+        <br>
         <div>
             <p><%= f.label :skills, 'Habilidades' %></p>
             <%= f.text_field :skills %>
         </div>
+        <br>
         <div>
             <p><%= f.label :payment, 'Pagamento por hora' %></p>
             <%= f.text_field :payment %>
         </div>
+        <br>
         <div>
             <%= f.check_box :in_person%><%= f.label :in_person, 'Presencial?' %>
         </div>
+        <br>
         <div>
             <p><%= f.label :deadline, 'Data limite' %></p>
             <%= f.date_field :deadline %>
         </div>
+        <br>
         <div>
             <%= f.submit 'Enviar' %>
         </div>
+        <br>
     <% end %>
 </div>

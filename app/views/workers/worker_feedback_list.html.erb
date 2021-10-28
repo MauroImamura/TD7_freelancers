@@ -1,14 +1,17 @@
-<div><h1>Lista de feedbbacks de <%= @worker.social_name %>:</h1></div>
-<div>
-    <% if @worker.worker_feedbacks.any? %>
-        <% @worker.worker_feedbacks.each do |feedback| %>
+<div style= "margin:50px"><h1>Lista de feedbacks de <%= @worker.social_name %>:</h1></div>
+<% if @worker.worker_feedbacks.any? %>
+    <% @worker.worker_feedbacks.each do |feedback| %>
+        <div style="border-style: solid; border-color: #888888; border-width: 2px; max-width: 50%; margin-bottom: -2px; padding:15px">
             <p>Nota <%= feedback.rate %></p>
             <p>Comentários: <%= feedback.comment %></p>
-        <% end %>
-    <% else %>
-        <p>Você ainda não possui feedbacks</p>
+        </div>
     <% end %>
+<% else %>
+    <p>Você ainda não possui feedbacks</p>
+<% end %>
+<div style= "margin:27px">
+    <%= link_to 'Voltar para perfil', worker_path(@worker)%>
 </div>
-<div>
-    <%link_to 'Voltar para perfil', my_profile_path%>
+<div style= "margin:27px">
+    <%= link_to 'Voltar para lista', worker_list_path%>
 </div>

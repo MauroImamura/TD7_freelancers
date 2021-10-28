@@ -1,13 +1,15 @@
-<h1>Seus projetos</h1>
-<div>
+<div style="margin: 50px"><h1>Seus projetos</h1></div>
+<div style="margin: 30px; max-width: 50%">
     <% if @jobs.empty? %>
         <p>Você ainda não possui projetos cadastrados.</p>
         <p><%= link_to 'Cadastre um projeto', new_job_path %></p>
     <% else %>
         <% @jobs.each do |job| %>
-            <p><%= link_to job.title, job_path(job) %></p>
-            <p>Pagamento por hora: <%= number_to_currency(job.payment) %></p>
-            <p><%= l job.deadline, format: :simple %></p>
+             <div style="border-style: solid; border-color: #888888; border-width: 2px; margin-bottom: -2px">
+                <p style="font-size: 20px; padding:15px"><%= link_to job.title, job_path(job) %></p>
+                <p>Pagamento por hora: <%= number_to_currency(job.payment) %></p>
+                <p style="padding:15px"><%= l job.deadline, format: :simple %></p>
+            </div>
         <% end %>
     <% end %>
 </div>

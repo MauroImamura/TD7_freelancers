@@ -4,32 +4,43 @@
 </div>
 <div>
     <%= form_with model: @worker do |f| %>
+        <br>
         <div>
             <p><%= f.label :full_name, 'Nome completo' %></p>
             <%= f.text_field :full_name %>
         </div>
+        <br>
         <div>
             <p><%= f.label :social_name, 'Nome social' %></p>
             <%= f.text_field :social_name %>
         </div>
+        <br>
         <div>
             <p><%= f.label :description, 'Sobre você' %></p>
             <%= f.text_field :description %>
         </div>
+        <br>
         <div>
             <p><%= f.label :birth_date, 'Data de nascimento' %></p>
             <%= f.date_field :birth_date %>
         </div>
+        <br>
         <div>
             <p><%= f.label :education, 'Formação' %></p>
             <%= f.text_field :education %>
         </div>
+        <br>
         <div>
             <p><%= f.label :experience, 'Experiência' %></p>
             <%= f.text_field :experience %>
         </div>
+        <br>
         <div>
             <%= f.submit 'Enviar' %>
+        </div>
+        <br>
+        <div>
+            <%= link_to "Início", root_path %>
         </div>
     <% end %>
 </div>

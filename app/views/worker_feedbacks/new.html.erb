@@ -14,11 +14,16 @@
         <p><%= f.label :comment, 'Comentários:' %></p>
         <%= f.text_field :comment %>
     </div>
+    <br>
     <div>
         <p><%= f.label :rate, 'Nota:' %></p>
         <%= f.number_field :rate %>
     </div>
+    <br>
     <div>
         <%= f.submit 'Enviar' %>
     </div>
 <% end %>
+<div style= "margin:27px">
+    <%= link_to 'Voltar', job_path(@application.job)%>
+</div>
