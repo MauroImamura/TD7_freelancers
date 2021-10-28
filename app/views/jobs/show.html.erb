@@ -25,7 +25,7 @@
 <div style="margin: 30px; max-width: 50%">
     <H2 style="font-size: 25px; margin: 25px">Título: <%= @job.title %></H2>
     <dl>
-        <dt style="font-size: 18px; padding: 15px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Contratante: </dt><dd style="padding: 15px"><%= @job.user.email %></dd>
+        <dt style="font-size: 18px; padding: 15px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Contratante: </dt><dd style="padding: 15px"><%= link_to @job.user.email, user_feedback_list_user_path(@job.user) %></dd>
         <dt style="font-size: 18px; padding: 15px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Descrição: </dt><dd style="padding: 15px"><%= @job.description %></dd>
         <dt style="font-size: 18px; padding: 15px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Habilidades exigidas: </dt><dd style="padding: 15px"><%= @job.skills %></dd>
         <dt style="font-size: 18px; padding: 15px; border-top-style: solid; border-top-color: #888888; border-top-width: 1px">Pagamento por hora: </dt><dd style="padding: 15px"><%= number_to_currency(@job.payment) %></dd>

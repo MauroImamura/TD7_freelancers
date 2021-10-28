@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       post 'add', on: :member
     end
   end
+  resources :users do
+    get 'user_feedback_list', on: :member
+  end
   resources :jobs, only: [:show, :new, :create] do
     get 'my_jobs', on: :collection
     get 'accepted_jobs', on: :collection
