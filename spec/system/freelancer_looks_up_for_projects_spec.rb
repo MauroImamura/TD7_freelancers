@@ -11,11 +11,11 @@ describe 'freelancer looks up for projects' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 4.days.from_now, user: user)
         Job.create!(title: 'Site de venda de livros',
                             description: 'Criar uma aplicação em que os usuários comercializam livros',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 20, deadline: '25/11/2021', user: user)
+                            payment: 20, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -25,8 +25,8 @@ describe 'freelancer looks up for projects' do
         expect(page).to have_link('Site de venda de livros')
         expect(page).to have_content('Pagamento por hora: R$ 25,00')
         expect(page).to have_content('Pagamento por hora: R$ 20,00')
-        expect(page).to have_content('15/11/2021')
-        expect(page).to have_content('25/11/2021')
+        expect(page).to have_content(I18n.l(4.days.from_now.to_date))
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
     end
     
     it 'but there is no job available' do
@@ -53,11 +53,11 @@ describe 'freelancer looks up for projects' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 4.days.from_now, user: user)
         Job.create!(title: 'Site de venda de livros',
                             description: 'Criar uma aplicação em que os usuários comercializam livros',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 20, deadline: '25/11/2021', user: user, status: 20)
+                            payment: 20, deadline: 5.days.from_now, user: user, status: 20)
         
         login_as worker, scope: :worker
         visit root_path
@@ -67,8 +67,8 @@ describe 'freelancer looks up for projects' do
         expect(page).not_to have_link('Site de venda de livros')
         expect(page).to have_content('Pagamento por hora: R$ 25,00')
         expect(page).not_to have_content('Pagamento por hora: R$ 20,00')
-        expect(page).to have_content('15/11/2021')
-        expect(page).not_to have_content('25/11/2021')
+        expect(page).to have_content(I18n.l(4.days.from_now.to_date))
+        expect(page).not_to have_content(I18n.l(5.days.from_now.to_date))
     end
 
     it 'using search box' do
@@ -81,11 +81,11 @@ describe 'freelancer looks up for projects' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 4.days.from_now, user: user)
         Job.create!(title: 'Site de venda de livros',
                             description: 'Criar uma aplicação em que os usuários comercializam livros',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 20, deadline: '25/11/2021', user: user)
+                            payment: 20, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -97,8 +97,8 @@ describe 'freelancer looks up for projects' do
         expect(page).not_to have_link('Site de venda de livros')
         expect(page).to have_content('Pagamento por hora: R$ 25,00')
         expect(page).not_to have_content('Pagamento por hora: R$ 20,00')
-        expect(page).to have_content('15/11/2021')
-        expect(page).not_to have_content('25/11/2021')
+        expect(page).to have_content(I18n.l(4.days.from_now.to_date))
+        expect(page).not_to have_content(I18n.l(5.days.from_now.to_date))
     end
 
     it 'using search box but finds no answer' do
@@ -111,11 +111,11 @@ describe 'freelancer looks up for projects' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 4.days.from_now, user: user)
         Job.create!(title: 'Site de venda de livros',
                             description: 'Criar uma aplicação em que os usuários comercializam livros',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 20, deadline: '25/11/2021', user: user)
+                            payment: 20, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -127,8 +127,8 @@ describe 'freelancer looks up for projects' do
         expect(page).not_to have_link('Site de venda de livros')
         expect(page).not_to have_content('Pagamento por hora: R$ 25,00')
         expect(page).not_to have_content('Pagamento por hora: R$ 20,00')
-        expect(page).not_to have_content('15/11/2021')
-        expect(page).not_to have_content('25/11/2021')
+        expect(page).not_to have_content(I18n.l(4.days.from_now.to_date))
+        expect(page).not_to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).to have_content('Não há projetos disponíveis no momento.')
     end
 
@@ -142,11 +142,11 @@ describe 'freelancer looks up for projects' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 4.days.from_now, user: user)
         Job.create!(title: 'Site de venda de livros',
                             description: 'Criar uma aplicação em que os usuários comercializam livros',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 20, deadline: '25/11/2021', user: user)
+                            payment: 20, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -159,8 +159,8 @@ describe 'freelancer looks up for projects' do
         expect(page).to have_link('Site de venda de livros')
         expect(page).to have_content('Pagamento por hora: R$ 25,00')
         expect(page).to have_content('Pagamento por hora: R$ 20,00')
-        expect(page).to have_content('15/11/2021')
-        expect(page).to have_content('25/11/2021')
+        expect(page).to have_content(I18n.l(4.days.from_now.to_date))
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).not_to have_content('Não há projetos disponíveis no momento.')
     end
 end

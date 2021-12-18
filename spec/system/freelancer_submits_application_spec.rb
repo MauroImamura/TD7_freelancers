@@ -11,7 +11,7 @@ describe 'freelancer submits application' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -35,7 +35,7 @@ describe 'freelancer submits application' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -44,14 +44,14 @@ describe 'freelancer submits application' do
         fill_in 'Conte sua experiência sobre o assunto', with: 'Já participei de 3 projetos de desenvolvimento de aplicações Ruby on Rails'
         fill_in 'Valor por hora de trabalho', with: 25
         fill_in 'Horas de trabalho semanais', with: 8
-        fill_in 'Previsão de entrega', with: '05/11/2021'
+        fill_in 'Previsão de entrega', with: 5.days.from_now
         click_on 'Enviar'
 
         expect(page).to have_content('Proposta enviada com sucesso')
         expect(page).to have_content('Já participei de 3 projetos de desenvolvimento de aplicações Ruby on Rails')
         expect(page).to have_content('R$ 25,00')
         expect(page).to have_content('8 horas')
-        expect(page).to have_content('05/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
     end
 
     it 'without enough information' do
@@ -64,7 +64,7 @@ describe 'freelancer submits application' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -84,7 +84,7 @@ describe 'freelancer submits application' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -110,7 +110,7 @@ describe 'freelancer submits application' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -119,7 +119,7 @@ describe 'freelancer submits application' do
         fill_in 'Conte sua experiência sobre o assunto', with: 'Já participei de 3 projetos de desenvolvimento de aplicações Ruby on Rails'
         fill_in 'Valor por hora de trabalho', with: 25
         fill_in 'Horas de trabalho semanais', with: 8
-        fill_in 'Previsão de entrega', with: '05/11/2021'
+        fill_in 'Previsão de entrega', with: 5.days.from_now
         click_on 'Enviar'
         click_on 'Voltar para projeto'
         click_on 'Clique aqui para cancelar'
@@ -137,7 +137,7 @@ describe 'freelancer submits application' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -146,21 +146,21 @@ describe 'freelancer submits application' do
         fill_in 'Conte sua experiência sobre o assunto', with: 'Já participei de 3 projetos de desenvolvimento de aplicações Ruby on Rails'
         fill_in 'Valor por hora de trabalho', with: 25
         fill_in 'Horas de trabalho semanais', with: 8
-        fill_in 'Previsão de entrega', with: '05/11/2021'
+        fill_in 'Previsão de entrega', with: 5.days.from_now
         click_on 'Enviar'
         click_on 'Voltar para projeto'
         click_on 'Clique aqui para cancelar'
         fill_in 'Conte sua experiência sobre o assunto', with: 'Já participei de 3 projetos de desenvolvimento de aplicações Ruby on Rails'
         fill_in 'Valor por hora de trabalho', with: 25
         fill_in 'Horas de trabalho semanais', with: 8
-        fill_in 'Previsão de entrega', with: '05/11/2021'
+        fill_in 'Previsão de entrega', with: 5.days.from_now
         click_on 'Enviar'
 
         expect(page).to have_content('Proposta enviada com sucesso')
         expect(page).to have_content('Já participei de 3 projetos de desenvolvimento de aplicações Ruby on Rails')
         expect(page).to have_content('R$ 25,00')
         expect(page).to have_content('8 horas')
-        expect(page).to have_content('05/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
     end
 
     it 'and tries to send two applications and fails' do
@@ -173,7 +173,7 @@ describe 'freelancer submits application' do
         Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as worker, scope: :worker
         visit root_path
@@ -182,13 +182,13 @@ describe 'freelancer submits application' do
         fill_in 'Conte sua experiência sobre o assunto', with: 'Já participei de 3 projetos de desenvolvimento de aplicações Ruby on Rails'
         fill_in 'Valor por hora de trabalho', with: 25
         fill_in 'Horas de trabalho semanais', with: 8
-        fill_in 'Previsão de entrega', with: '05/11/2021'
+        fill_in 'Previsão de entrega', with: 5.days.from_now
         click_on 'Enviar'
         click_on 'Voltar para projeto'
         fill_in 'Conte sua experiência sobre o assunto', with: 'Já participei de 3 projetos de desenvolvimento de aplicações Ruby on Rails'
         fill_in 'Valor por hora de trabalho', with: 25
         fill_in 'Horas de trabalho semanais', with: 8
-        fill_in 'Previsão de entrega', with: '05/11/2021'
+        fill_in 'Previsão de entrega', with: 5.days.from_now
         click_on 'Enviar'
 
         expect(page).to have_content('Freelancer você já enviou uma proposta. Cancele a atual antes de mandar uma nova.')

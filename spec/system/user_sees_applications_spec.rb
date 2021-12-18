@@ -11,9 +11,9 @@ describe 'user sees applications' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker, job: job)
+                            expected_deadline: 5.days.from_now, worker: worker, job: job)
         
         login_as user, scope: :user
         visit root_path
@@ -23,7 +23,7 @@ describe 'user sees applications' do
         expect(page).not_to have_content('Envie sua proposta')
         expect(page).to have_content('Mauro T')
         expect(page).to have_content('Projetos ruby on rails')
-        expect(page).to have_content('10/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).to have_content('R$ 25,00')
         expect(page).to have_content('8 horas')
         expect(page).to have_content('Pendente')
@@ -39,9 +39,9 @@ describe 'user sees applications' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 4.days.from_now, user: user)
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker, job: job)
+                            expected_deadline: 5.days.from_now, worker: worker, job: job)
         
         visit root_path
         click_on 'Encontre projetos'
@@ -50,7 +50,7 @@ describe 'user sees applications' do
         expect(page).not_to have_content('Envie sua proposta')
         expect(page).not_to have_content('Mauro T')
         expect(page).not_to have_content('Experiências: Projetos ruby on rails')
-        expect(page).not_to have_content('Prazo de entrega estimado: 10/11/2021')
+        expect(page).not_to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).not_to have_content('Valor da hora trabalhada: R$ 25,00')
         expect(page).not_to have_content('Dedicação semanal: 8 horas')
     end
@@ -66,9 +66,9 @@ describe 'user sees applications' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: jaco)
+                            payment: 25, deadline: 4.days.from_now, user: jaco)
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker, job: job)
+                            expected_deadline: 5.days.from_now, worker: worker, job: job)
         
         login_as esau, scope: :user
         visit root_path
@@ -78,7 +78,7 @@ describe 'user sees applications' do
         expect(page).not_to have_content('Envie sua proposta')
         expect(page).not_to have_content('Mauro T')
         expect(page).not_to have_content('Experiências: Projetos ruby on rails')
-        expect(page).not_to have_content('Prazo de entrega estimado: 10/11/2021')
+        expect(page).not_to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).not_to have_content('Valor da hora trabalhada: R$ 25,00')
         expect(page).not_to have_content('Dedicação semanal: 8 horas')
     end
@@ -93,9 +93,9 @@ describe 'user sees applications' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker, job: job)
+                            expected_deadline: 5.days.from_now, worker: worker, job: job)
         
         login_as user, scope: :user
         visit root_path
@@ -108,7 +108,7 @@ describe 'user sees applications' do
         expect(page).not_to have_content('Aceitar proposta')
         expect(page).to have_content('Mauro T')
         expect(page).to have_content('Projetos ruby on rails')
-        expect(page).to have_content('10/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).to have_content('R$ 25,00')
         expect(page).to have_content('8 horas')
         expect(page).to have_content('Aceita')
@@ -124,9 +124,9 @@ describe 'user sees applications' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker, job: job)
+                            expected_deadline: 5.days.from_now, worker: worker, job: job)
         
         login_as user, scope: :user
         visit root_path
@@ -139,7 +139,7 @@ describe 'user sees applications' do
         expect(page).not_to have_content('Recusar proposta')
         expect(page).to have_content('Mauro T')
         expect(page).to have_content('Projetos ruby on rails')
-        expect(page).to have_content('10/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).to have_content('R$ 25,00')
         expect(page).to have_content('8 horas')
         expect(page).to have_content('Recusada')

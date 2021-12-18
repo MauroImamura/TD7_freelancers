@@ -26,7 +26,7 @@ describe 'user access own projects' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
 
         login_as user, scope: :user
         visit root_path
@@ -34,7 +34,7 @@ describe 'user access own projects' do
 
         expect(page).to have_link('Site de locação de imóveis')
         expect(page).to have_content('Pagamento por hora: R$ 25,00')
-        expect(page).to have_content('15/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
     end
 
     it 'and do not see other projects' do
@@ -43,11 +43,11 @@ describe 'user access own projects' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: isaac)
+                            payment: 25, deadline: 5.days.from_now, user: isaac)
         job = Job.create!(title: 'Site de locação de propriedades',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 30, deadline: '05/11/2021', user: ismael)
+                            payment: 30, deadline: 5.days.from_now, user: ismael)
         
         login_as isaac, scope: :user
         visit root_path
@@ -55,7 +55,7 @@ describe 'user access own projects' do
 
         expect(page).to have_link('Site de locação de imóveis')
         expect(page).to have_content('Pagamento por hora: R$ 25,00')
-        expect(page).to have_content('15/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).not_to have_content('Site de locação de propriedades')
     end
 
@@ -64,7 +64,7 @@ describe 'user access own projects' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         worker1 = Worker.create!(email: 'worker1@freelancers.com.br', password: '123456', full_name: 'Mauro T',
                             social_name: 'Mauro T', description: 'dev', education: 'superior completo',
                             experience: 'aplicações web em rails (portifólio: https://github.com/MauroImamura)',
@@ -76,9 +76,9 @@ describe 'user access own projects' do
                             birth_date: '18/11/1994'
                             )
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker1, job: job, status: 10)
+                            expected_deadline: 5.days.from_now, worker: worker1, job: job, status: 10)
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker2, job: job, status: 0)
+                            expected_deadline: 5.days.from_now, worker: worker2, job: job, status: 0)
 
         login_as user, scope: :user
         visit root_path
@@ -95,7 +95,7 @@ describe 'user access own projects' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         worker1 = Worker.create!(email: 'worker1@freelancers.com.br', password: '123456', full_name: 'Mauro T',
                             social_name: 'Mauro T', description: 'dev', education: 'superior completo',
                             experience: 'aplicações web em rails (portifólio: https://github.com/MauroImamura)',
@@ -107,9 +107,9 @@ describe 'user access own projects' do
                             birth_date: '18/11/1994'
                             )
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker1, job: job, status: 10)
+                            expected_deadline: 5.days.from_now, worker: worker1, job: job, status: 10)
         Application.create!(description: 'Projetos ruby on rails', payment: 25, time_per_week: 8,
-                            expected_deadline: '10/11/2021', worker: worker2, job: job, status: 0)
+                            expected_deadline: 5.days.from_now, worker: worker2, job: job, status: 0)
 
         login_as user, scope: :user
         visit root_path

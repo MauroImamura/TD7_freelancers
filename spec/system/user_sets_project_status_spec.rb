@@ -6,7 +6,7 @@ describe 'User sets project status' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as user, scope: :user
         visit root_path
@@ -21,7 +21,7 @@ describe 'User sets project status' do
         expect(page).to have_content('Criar uma aplicação em que os usuários cadastram suas propriedades')
         expect(page).to have_content('Ruby on Rails: MVC, formulários, autenticação, sqlite3')
         expect(page).to have_content('R$ 25,00')
-        expect(page).to have_content('15/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).to have_content('Executando')
     end
 
@@ -30,7 +30,7 @@ describe 'User sets project status' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user, status: 20)
+                            payment: 25, deadline: 5.days.from_now, user: user, status: 20)
         
         login_as user, scope: :user
         visit root_path
@@ -45,7 +45,7 @@ describe 'User sets project status' do
         expect(page).to have_content('Criar uma aplicação em que os usuários cadastram suas propriedades')
         expect(page).to have_content('Ruby on Rails: MVC, formulários, autenticação, sqlite3')
         expect(page).to have_content('R$ 25,00')
-        expect(page).to have_content('15/11/2021')
+        expect(page).to have_content(I18n.l(5.days.from_now.to_date))
         expect(page).to have_content('Finalizado')
     end
 end

@@ -36,11 +36,11 @@ describe Job do
                 Job.create!(title: 'site de locação e imóveis',
                                     description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                     skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                    payment: 25, deadline: '15/11/2021', user: user)
+                                    payment: 25, deadline: 5.days.from_now, user: user)
                 job = Job.new(title: 'site de locação e imóveis',
                                     description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                     skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                    payment: 25, deadline: '15/11/2021', user: user)
+                                    payment: 25, deadline: 5.days.from_now, user: user)
                 job.valid?
                 expect(job.errors.full_messages_for(:title)).to include('Título já está em uso')
             end

@@ -11,7 +11,7 @@ describe 'user sees feedbacks' do
         job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
         user_feedback = UserFeedback.create!(user: user, worker: worker, job: job, rate: 4, comment: 'Boa comunicação')
 
         login_as user, scope: :user
@@ -42,7 +42,7 @@ describe 'user sees feedbacks' do
         job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
         user_feedback = UserFeedback.create!(user: user, worker: worker, job: job, rate: 4, comment: 'Boa comunicação')
 
         login_as user, scope: :user
@@ -67,11 +67,11 @@ describe 'user sees feedbacks' do
         job1 = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
         job2 = Job.create!(title: 'Site de locação de veículos',
                                 description: 'Criar uma aplicação em que os usuários cadastram seus veículos e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 10)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 10)
         user_feedback = UserFeedback.create!(user: user, worker: worker, job: job1, rate: 4, comment: 'Boa comunicação')
 
         visit root_path

@@ -12,9 +12,9 @@ describe 'project recieves feedbacks' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             login_as user, scope: :user
             visit root_path
@@ -38,9 +38,9 @@ describe 'project recieves feedbacks' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             login_as user, scope: :user
             visit root_path
@@ -68,9 +68,9 @@ describe 'project recieves feedbacks' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             login_as user, scope: :user
             visit root_path
@@ -97,9 +97,9 @@ describe 'project recieves feedbacks' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             login_as user, scope: :user
             visit root_path
@@ -128,9 +128,9 @@ describe 'project recieves feedbacks' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             login_as worker, scope: :worker
             visit root_path
@@ -152,9 +152,9 @@ describe 'project recieves feedbacks' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             login_as worker, scope: :worker
             visit root_path
@@ -180,9 +180,9 @@ describe 'project recieves feedbacks' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             login_as worker, scope: :worker
             visit root_path
@@ -207,9 +207,9 @@ describe 'project recieves feedbacks' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             login_as worker, scope: :worker
             visit root_path

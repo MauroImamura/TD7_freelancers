@@ -11,7 +11,7 @@ describe 'user looks up for worker' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as user, scope: :user
         visit root_path
@@ -32,7 +32,7 @@ describe 'user looks up for worker' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as user, scope: :user
         visit root_path
@@ -59,7 +59,7 @@ describe 'user looks up for worker' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as user, scope: :user
         visit root_path
@@ -76,7 +76,7 @@ describe 'user looks up for worker' do
         job = Job.create!(title: 'Site de locação de imóveis',
                             description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                             skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                            payment: 25, deadline: '15/11/2021', user: user)
+                            payment: 25, deadline: 5.days.from_now, user: user)
         
         login_as user, scope: :user
         visit root_path

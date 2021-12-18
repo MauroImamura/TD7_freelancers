@@ -278,9 +278,9 @@ describe 'visitor authentication' do
             job = Job.create!(title: 'Site de locação de imóveis',
                     description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                     skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                    payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                    payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             appl = Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                    expected_deadline: '12/11/2021', job: job, worker: worker, status: 10)
+                    expected_deadline: 5.days.from_now, job: job, worker: worker, status: 10)
             
             post '/jobs/1/user_feedbacks'
 
@@ -304,9 +304,9 @@ describe 'visitor authentication' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user)
+                                payment: 25, deadline: 5.days.from_now, user: user)
             appl = Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker1, status: 5)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker1, status: 5)
 
             login_as worker2, scope: :worker
             post '/applications/1/cancel'
@@ -329,9 +329,9 @@ describe 'visitor authentication' do
             job = Job.create!(title: 'Site de locação de imóveis',
                                 description: 'Criar uma aplicação em que os usuários cadastram suas propriedades e disponibilizam para alugar por tempo determinado',
                                 skills: 'Ruby on Rails: MVC, formulários, autenticação, sqlite3',
-                                payment: 25, deadline: '15/11/2021', user: user, status: 30)
+                                payment: 25, deadline: 5.days.from_now, user: user, status: 30)
             appl = Application.create!(description: '3 anos de experiência', payment: 30, time_per_week: 8,
-                                expected_deadline: '12/11/2021', job: job, worker: worker1, status: 10)
+                                expected_deadline: 5.days.from_now, job: job, worker: worker1, status: 10)
 
             login_as worker2, scope: :worker
             get '/jobs/1/user_feedbacks/new'
